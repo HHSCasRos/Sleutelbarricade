@@ -2,6 +2,6 @@ package sleutelbarricade;
 
 
 
-public class Barricade extends Field{
+public class Key {
     private int idCode;
 }
