@@ -14,11 +14,12 @@ public class HomeScreen extends JFrame{
     //interface elements
     private final ArrayList<JButton> button;
     private ArrayList<ActionListener> listener;
+    private ArrayList<Level> levels;
     private final int amountOfLevels;
     
     public HomeScreen(ArrayList<Level> levels) {
         this.amountOfLevels = levels.size();
-        
+        this.levels = levels;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         
         //create all buttons
@@ -42,10 +43,10 @@ public class HomeScreen extends JFrame{
             this.idLevel = idLevel;
             this.frame = f;
         }
-        
+       
         @Override
         public void actionPerformed(ActionEvent event){
-            JFrame level = new GameFieldViewer(idLevel);
+            JFrame level = new GameFieldViewer(levels.get(0));
             level.setVisible(true);
             level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.dispose();
