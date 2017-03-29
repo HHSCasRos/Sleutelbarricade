@@ -6,8 +6,20 @@ public class Level {
     private float time;
     private String niveau;
     
-    public void pauseGame(){
+    public Level(int idLevel, String niveau) {
+        this.idLevel = idLevel;
+        this.niveau = niveau;
+        this.paused = false;
+    }
+    
+    public void start() {
         
+    }
+    public void pauseGame(){
+        paused = true;
+    }
+    public void resumeGame() {
+        paused = false;
     }
     public void reStart(){
         
