@@ -14,7 +14,6 @@ public class GameField extends JComponent{
     
     @Override
     public void paintComponent(Graphics g) {
-        createGameField();
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
                 g.setColor(fields[i][j].getColor());
@@ -24,24 +23,6 @@ public class GameField extends JComponent{
                             fields[i][j].getSize()   );
             }
         }
-    }
-    
-    public void createGameField() {
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                fields[i][j] = new WalkWay();
-            }
-        }
-        
-        for(int i=0; i<size; i++){
-                int j = 0;
-                fields[i][j].setX(0);
-                fields[i][j].setY(i * fields[i][j].getSize());
-                for(j=0; j<size; j++){
-                    fields[i][j].setX(j * fields[i][j].getSize());
-                    fields[i][j].setY(i * fields[i][j].getSize());
-                }  
-            }
     }
     
     //setters and getters
