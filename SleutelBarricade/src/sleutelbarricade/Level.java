@@ -1,10 +1,10 @@
 package sleutelbarricade;
 
 public class Level {
-    private String idLevel;
+    private final String idLevel;
     private boolean paused;
     private float time;
-    private int niveau;//1=low, 2=medium, 3=high
+    private final int niveau;//1=low, 2=medium, 3=high
     private Field[][] fields;
     private int gameFieldSize;
     

@@ -1,7 +1,7 @@
 package sleutelbarricade;
 
 public class Key {
-    private int idCode;
+    private final int idCode;
     
     public Key(int idCode){
         this.idCode = idCode;

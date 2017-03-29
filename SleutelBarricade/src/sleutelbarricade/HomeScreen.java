@@ -13,8 +13,8 @@ public class HomeScreen extends JFrame{
     
     //interface elements
     private final ArrayList<JButton> button;
-    private ArrayList<ActionListener> listener;
-    private ArrayList<Level> levels;
+    private final ArrayList<ActionListener> listener;
+    private final ArrayList<Level> levels;
     private final int amountOfLevels;
     
     public HomeScreen(ArrayList<Level> levels) {
@@ -37,8 +37,8 @@ public class HomeScreen extends JFrame{
     }
     
     class LevelSelectListener implements ActionListener{
-        private String idLevel;
-        private JFrame frame;
+        private final String idLevel;
+        private final JFrame frame;
         public LevelSelectListener(String idLevel , JFrame f) {
             this.idLevel = idLevel;
             this.frame = f;
