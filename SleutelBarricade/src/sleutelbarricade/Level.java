@@ -30,6 +30,7 @@ public class Level {
         this.idLevel = idLevel;
         this.niveau = niveau;
         this.paused = false;
+        //createGameField();
     }
     
     public void createGameField() {
@@ -38,6 +39,16 @@ public class Level {
                 fields[i][j] = new WalkWay();
             }
         }
+        
+        for(int i=0; i<gameFieldSize; i++){
+                int j = 0;
+                fields[i][j].setX(0);
+                fields[i][j].setY(i * fields[i][j].getSize());
+                for(j=0; j<gameFieldSize; j++){
+                    fields[i][j].setX(j * fields[i][j].getSize());
+                    fields[i][j].setY(i * fields[i][j].getSize());
+                }  
+            }
     }
     
     public Field[][] getGameField(){
