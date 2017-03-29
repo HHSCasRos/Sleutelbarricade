@@ -23,6 +23,7 @@ public class HomeScreen extends JFrame{
         
         //create all buttons
         this.button = new ArrayList();
+        this.listener = new ArrayList();
         
         for(int i = 0; i < this.amountOfLevels; i++){
             button.add(new JButton(levels.get(i).getIdLevel()));
