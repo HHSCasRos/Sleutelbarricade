@@ -30,4 +30,8 @@ public abstract class Field {
     public void setColor(Color color) {
         this.color = color;
     }
+    
+    public int getSize(){
+        return size;
+    }
 }

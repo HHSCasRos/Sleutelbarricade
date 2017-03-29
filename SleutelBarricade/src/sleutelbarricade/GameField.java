@@ -16,15 +16,19 @@ public class GameField extends JComponent{
         
     }
     
+    
     public void paintComponent(Graphics g) {
         
     }
     
     //setters and getters
-    public int getFieldSize() {
+    public int getGameFieldSize() {
         return this.size;
     }
-    public void setFieldSize(int size) {
+    public void setGameFieldSize(int size) {
         this.size = size;
+    }
+    public int getFieldSize() {
+        return fields[0][0].getSize();
     }
 }
