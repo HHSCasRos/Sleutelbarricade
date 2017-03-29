@@ -29,7 +29,7 @@ public class HomeScreen extends JFrame{
         for(int i = 1; i <= this.amountOfLevels; i++){
             button.add(new JButton("" + i));
 
-            listener.add(new LevelSelectListener());
+            listener.add(new LevelSelectListener(i));
             button.get(i).addActionListener(listener.get(i));
         }
         
@@ -37,9 +37,14 @@ public class HomeScreen extends JFrame{
     }
     
     class LevelSelectListener implements ActionListener{
+        private int idLevel;
+        public LevelSelectListener(int idLevel) {
+            this.idLevel = idLevel;
+        }
+        
         @Override
         public void actionPerformed(ActionEvent event){
-            JFrame level = new GameFieldViewer();
+            JFrame level = new GameFieldViewer(idLevel);
             
         }
     }

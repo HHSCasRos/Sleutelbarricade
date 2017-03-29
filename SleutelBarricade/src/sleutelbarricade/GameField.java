@@ -7,8 +7,21 @@ public class GameField extends JComponent{
     private int size;
     private Field[][] fields;
 
-    public GameField(int size) {
-        this.size = size;
+    public GameField(int niveau) {
+        switch(niveau) {
+            case 1: 
+                this.size = 10;
+                break;
+            case 2:
+                this.size = 15;
+                break;
+            case 3:
+                this.size = 20;
+                break;
+            default :
+                this.size = 10;
+                break;
+        }
         fields = new Field[size][size];
     }
     
@@ -16,7 +29,7 @@ public class GameField extends JComponent{
         
     }
     
-    
+    @Override
     public void paintComponent(Graphics g) {
         
     }
