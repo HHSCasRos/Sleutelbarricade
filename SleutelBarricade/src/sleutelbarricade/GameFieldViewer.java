@@ -13,6 +13,8 @@ public class GameFieldViewer  extends JFrame{
     private int gameFieldSize;
     
     public GameFieldViewer(String idLevel) {
+        //this.size moet nog vervangen worden met level niveau
+        this.size = 1;
         
         this.component = new GameField(this.size);
         

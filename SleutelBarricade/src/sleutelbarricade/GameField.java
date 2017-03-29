@@ -25,10 +25,6 @@ public class GameField extends JComponent{
         fields = new Field[size][size];
     }
     
-    public void createGameField() {
-        
-    }
-    
     @Override
     public void paintComponent(Graphics g) {
         for(int i = 0; i < size; i++){
@@ -50,6 +46,10 @@ public class GameField extends JComponent{
         this.size = size;
     }
     public int getFieldSize() {
-        return fields[0][0].getSize();
+        if(fields[0][0] == null){
+           return 10; 
+        }else{
+           return fields[0][0].getSize();
+        }
     }
 }
