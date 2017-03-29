@@ -11,11 +11,21 @@ public class Barricade extends Field{
     }
     
     public void message(){
-        
+        if(true){
+            System.out.println("Key fits, barricade is opening.");
+        }else{
+            System.out.println("Sorry, this key doesn't fit.");
+        }
     }
-    public boolean keyFits(){
-        
+    
+    public boolean keyFits(Key k){
+        if(k.getIdCode() == idCode) {
+            return true;
+        }else{
+            return false;
+        }
     }
+    
     public void open(){
         
     }
