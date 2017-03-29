@@ -4,9 +4,9 @@ public class Level {
     private int idLevel;
     private boolean paused;
     private float time;
-    private String niveau;
+    private int niveau;//1=low, 2=medium, 3=high
     
-    public Level(int idLevel, String niveau) {
+    public Level(int idLevel, int niveau) {
         this.idLevel = idLevel;
         this.niveau = niveau;
         this.paused = false;
