@@ -12,29 +12,34 @@ public class HomeScreen extends JFrame{
     private static final int FRAME_HEIGHT = 300;
     
     //interface elements
-    private ArrayList<JButton> button;
-    private int amountOfLevels;
+    private final ArrayList<JButton> button;
+    private ArrayList<ActionListener> listener;
+    private final int amountOfLevels;
     
-    public HomeScreen() {
-        this.amountOfLevels = 3;
+    public HomeScreen(int amountOfLevels) {
+        this.amountOfLevels = amountOfLevels;
         
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         
         //create all buttons
         this.button = new ArrayList();
-        for(int i = 0; i < amountOfLevels; i++){
-            button.add(new JButton("Level " + (i + 1)));
+        
+        button.add(new JButton("Tutorial"));
+        
+        for(int i = 1; i <= this.amountOfLevels; i++){
+            button.add(new JButton("" + i));
 
-            ActionListener listener = new AddInterestListener();
-            button.get(i).addActionListener(listener);
+            listener.add(new LevelSelectListener());
+            button.get(i).addActionListener(listener.get(i));
         }
         
         createPanel();
     }
     
-    class AddInterestListener implements ActionListener{
+    class LevelSelectListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event){
+            JFrame level = new GameFieldViewer();
             
         }
     }

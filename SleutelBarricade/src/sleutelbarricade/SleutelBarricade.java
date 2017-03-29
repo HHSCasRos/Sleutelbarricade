@@ -9,8 +9,10 @@ public class SleutelBarricade {
         
         ArrayList<Level> levels = new ArrayList();
         levels.add(new Level(10, 1));
+        levels.add(new Level(23, 1));
+        levels.add(new Level(38, 1));
         
-        JFrame frame = new HomeScreen();
+        JFrame frame = new HomeScreen(levels.size());
         
         frame.setTitle("Home Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
