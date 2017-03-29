@@ -12,7 +12,7 @@ public class GameFieldViewer  extends JFrame{
     private int fieldSize;
     private int gameFieldSize;
     
-    public GameFieldViewer(int size) {
+    public GameFieldViewer(String idLevel) {
         
         this.component = new GameField(this.size);
         

@@ -1,12 +1,12 @@
 package sleutelbarricade;
 
 public class Level {
-    private int idLevel;
+    private String idLevel;
     private boolean paused;
     private float time;
     private int niveau;//1=low, 2=medium, 3=high
     
-    public Level(int idLevel, int niveau) {
+    public Level(String idLevel, int niveau) {
         this.idLevel = idLevel;
         this.niveau = niveau;
         this.paused = false;
@@ -24,4 +24,9 @@ public class Level {
     public void reStart(){
         
     }
+
+    public String getIdLevel() {
+        return idLevel;
+    }
+    
 }

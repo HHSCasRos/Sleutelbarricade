@@ -16,20 +16,18 @@ public class HomeScreen extends JFrame{
     private ArrayList<ActionListener> listener;
     private final int amountOfLevels;
     
-    public HomeScreen(int amountOfLevels) {
-        this.amountOfLevels = amountOfLevels;
+    public HomeScreen(ArrayList<Level> levels) {
+        this.amountOfLevels = levels.size();
         
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         
         //create all buttons
         this.button = new ArrayList();
         
-        button.add(new JButton("Tutorial"));
-        
-        for(int i = 1; i <= this.amountOfLevels; i++){
-            button.add(new JButton("" + i));
+        for(int i = 0; i < this.amountOfLevels; i++){
+            button.add(new JButton(levels.get(i).getIdLevel()));
 
-            listener.add(new LevelSelectListener(i));
+            listener.add(new LevelSelectListener(levels.get(i).getIdLevel()));
             button.get(i).addActionListener(listener.get(i));
         }
         
@@ -37,8 +35,8 @@ public class HomeScreen extends JFrame{
     }
     
     class LevelSelectListener implements ActionListener{
-        private int idLevel;
-        public LevelSelectListener(int idLevel) {
+        private String idLevel;
+        public LevelSelectListener(String idLevel) {
             this.idLevel = idLevel;
         }
         
