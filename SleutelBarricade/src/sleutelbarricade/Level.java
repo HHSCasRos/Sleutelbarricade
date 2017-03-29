@@ -7,4 +7,11 @@ public class Level {
     private boolean paused;
     private float time;
     private String niveau;
+    
+    public void pauseGame(){
+        
+    }
+    public void reStart(){
+        
+    }
 }
