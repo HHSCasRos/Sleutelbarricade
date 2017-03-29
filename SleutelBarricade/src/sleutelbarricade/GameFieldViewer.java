@@ -25,5 +25,7 @@ public class GameFieldViewer  extends JFrame{
         JPanel panel = new JPanel();
         panel.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         panel.add(component);
+        
+        add(panel);
     }
 }
