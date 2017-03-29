@@ -6,9 +6,11 @@ public abstract class Field {
     private static final int size = 10;
     private int x;
     private int y;
-    private boolean moveThru;
+    protected boolean hasPlayer;
     private Color color;
-
+    
+    public abstract void hasPlayer(int playerPosition);
+    
     //setters and getters
     public int getX() {
         return x;

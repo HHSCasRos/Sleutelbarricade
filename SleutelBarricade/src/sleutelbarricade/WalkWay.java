@@ -15,6 +15,15 @@ public class WalkWay extends Field{
         this.hasKey = true;
         super.setColor(Color.GRAY);
     }
+    
+    @Override
+    public void hasPlayer(int playerPosition){
+        if(super.getX() == playerPosition){
+            hasPlayer = true;
+        }else{
+            hasPlayer = false;
+        }
+    }
 
     //setters and getters
     public boolean isHasKey() {

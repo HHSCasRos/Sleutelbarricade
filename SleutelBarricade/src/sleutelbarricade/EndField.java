@@ -7,6 +7,15 @@ public class EndField extends Field{
         super.setColor(Color.GREEN);
     }
     
+    @Override
+    public void hasPlayer(int playerPosition){
+        if(super.getX() == playerPosition){
+            endGame();
+        }else{
+            hasPlayer = false;
+        }
+    }
+    
     public void message(){
         System.out.println("Victory!");
     }

@@ -12,6 +12,15 @@ public class Barricade extends Field{
         super.setColor(Color.ORANGE);
     }
     
+    @Override
+    public void hasPlayer(int playerPosition){
+        if(super.getX() == playerPosition){
+            hasPlayer = true;
+        }else{
+            hasPlayer = false;
+        }
+    }
+    
     public void message(){
         System.out.println("Sorry, this key doesn't fit.");
     }
