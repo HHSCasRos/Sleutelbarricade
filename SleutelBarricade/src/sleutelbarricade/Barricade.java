@@ -2,8 +2,6 @@ package sleutelbarricade;
 
 import java.awt.Color;
 
-
-
 public class Barricade extends Field{
     private int idCode;
 
@@ -25,5 +23,4 @@ public class Barricade extends Field{
     public int getIdCode() {
         return idCode;
     }
-    
 }

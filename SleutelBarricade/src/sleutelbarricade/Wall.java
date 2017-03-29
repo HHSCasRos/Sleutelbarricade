@@ -2,8 +2,6 @@ package sleutelbarricade;
 
 import java.awt.Color;
 
-
-
 public class Wall extends Field{
 
     public Wall() {

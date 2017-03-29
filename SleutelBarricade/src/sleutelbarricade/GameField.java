@@ -1,11 +1,10 @@
 package sleutelbarricade;
 
-
-
 public class GameField {
     private int size;
     private Field[][] fields;
 
+    //setters and getters
     public int getSize() {
         return size;
     }

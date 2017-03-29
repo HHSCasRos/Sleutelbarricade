@@ -2,8 +2,6 @@ package sleutelbarricade;
 
 import java.awt.Color;
 
-
-
 public abstract class Field {
     private int size;
     private int x;
@@ -11,6 +9,7 @@ public abstract class Field {
     private boolean moveThru;
     private Color color;
 
+    //setters and getters
     public int getX() {
         return x;
     }

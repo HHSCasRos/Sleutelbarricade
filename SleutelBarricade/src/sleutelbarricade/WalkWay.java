@@ -2,8 +2,6 @@ package sleutelbarricade;
 
 import java.awt.Color;
 
-
-
 public class WalkWay extends Field{
     private boolean hasKey;
     private Key key;
@@ -18,6 +16,7 @@ public class WalkWay extends Field{
         super.setColor(Color.GRAY);
     }
 
+    //setters and getters
     public boolean isHasKey() {
         return hasKey;
     }

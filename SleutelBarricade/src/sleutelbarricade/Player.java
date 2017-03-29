@@ -1,7 +1,5 @@
 package sleutelbarricade;
 
-
-
 public class Player {
     private String name;
     private boolean hasKey;
@@ -16,6 +14,7 @@ public class Player {
         
     }
 
+    //setters and getters
     public Key getKey() {
         return key;
     }
