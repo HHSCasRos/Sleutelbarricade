@@ -24,5 +24,7 @@ public class GameFieldViewer  extends JFrame{
         
         
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        
+        add(component);
     }
 }
