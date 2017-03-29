@@ -31,7 +31,15 @@ public class GameField extends JComponent{
     
     @Override
     public void paintComponent(Graphics g) {
-        
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                g.setColor(fields[i][j].getColor());
+                g.fillRect( fields[i][j].getX() , 
+                            fields[i][j].getY() , 
+                            fields[i][j].getSize()   , 
+                            fields[i][j].getSize()   );
+            }
+        }
     }
     
     //setters and getters
