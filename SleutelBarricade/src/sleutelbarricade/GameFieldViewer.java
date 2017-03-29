@@ -3,20 +3,26 @@ package sleutelbarricade;
 import javax.swing.JFrame;
 
 public class GameFieldViewer  extends JFrame{
-    private HomeComponent component;
+    private GameField component;
     
-    private static final int FRAME_WIDTH = 400;
-    private static final int FRAME_HEIGHT = 300;
+    private final int FRAME_WIDTH;
+    private final int FRAME_HEIGHT;
     
     private int size;
+    private int fieldSize;
+    private int gameFieldSize;
     
     public GameFieldViewer(int size) {
         
-        this.size = size;
-        
-        
-        
         this.component = new GameField(this.size);
+        
+        this.fieldSize = component.getGameFieldSize();
+        this.gameFieldSize = component.getFieldSize();
+        
+        this.FRAME_WIDTH = fieldSize * gameFieldSize;
+        this.FRAME_HEIGHT = fieldSize * gameFieldSize;
+        
+        
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }
 }
