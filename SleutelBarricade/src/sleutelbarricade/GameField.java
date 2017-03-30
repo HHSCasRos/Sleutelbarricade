@@ -1,5 +1,6 @@
 package sleutelbarricade;
 
+import java.awt.Color;
 import javax.swing.JComponent;
 import java.awt.Graphics;
 
