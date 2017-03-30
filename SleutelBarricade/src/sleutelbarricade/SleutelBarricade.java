@@ -8,7 +8,14 @@ public class SleutelBarricade {
     public static void main(String[] args) {
         
         ArrayList<Level> levels = new ArrayList();
-        Level tutorial = new Level("Tutorial", 0);
+        Level tutorial = new Level("Tutorial", 2);
+        Field[][] tutorialField = new Field[tutorial.getGameFieldSize()][tutorial.getGameFieldSize()];
+        for(int i = 0; i < tutorialField.length; i++){
+            for(int j = 0; j < tutorialField.length; j++){
+                tutorialField[i][j] = new WalkWay();
+            }
+        }
+        tutorial.setGameField(tutorialField);
         levels.add(tutorial);
         levels.add(new Level("Level 1", 1));
         levels.add(new Level("Level 2", 1));
