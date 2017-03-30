@@ -23,7 +23,7 @@ public class Level {
                 fields = new Field[gameFieldSize][gameFieldSize];
                 break;
             default :
-                gameFieldSize = 2;
+                gameFieldSize = 3;
                 fields = new Field[gameFieldSize][gameFieldSize];
                 break;
         }

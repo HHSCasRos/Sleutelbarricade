@@ -8,11 +8,20 @@ public class SleutelBarricade {
     public static void main(String[] args) {
         
         ArrayList<Level> levels = new ArrayList();
-        Level tutorial = new Level("Tutorial", 3);
+        Level tutorial = new Level("Tutorial", 0);
+        Key tutorialKey1 = new Key(100);
         Field[][] tutorialField = new Field[tutorial.getGameFieldSize()][tutorial.getGameFieldSize()];
         for(int i = 0; i < tutorialField.length; i++){
             for(int j = 0; j < tutorialField.length; j++){
-                tutorialField[i][j] = new WalkWay();
+                if(j == 1){
+                    tutorialField[i][j] = new Barricade(100);
+                }else if(i == 2 && j == 0) {
+                    tutorialField[i][j] = new WalkWay(tutorialKey1);
+                }else if(i == 2 && j == 2) {
+                    tutorialField[i][j] = new EndField();
+                }else{
+                    tutorialField[i][j] = new WalkWay();
+                }
             }
         }
         for(int i=0; i<tutorialField.length; i++){

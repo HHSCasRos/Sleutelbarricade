@@ -13,7 +13,7 @@ public class WalkWay extends Field{
     public WalkWay(Key key){
         this.key = key;
         this.hasKey = true;
-        super.setColor(Color.GRAY);
+        super.setColor(Color.WHITE);
     }
     
     @Override
