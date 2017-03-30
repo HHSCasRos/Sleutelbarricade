@@ -15,6 +15,16 @@ public class SleutelBarricade {
                 tutorialField[i][j] = new WalkWay();
             }
         }
+        for(int i=0; i<tutorialField.length; i++){
+                int j = 0;
+                tutorialField[i][j].setX(0);
+                tutorialField[i][j].setY(i * tutorialField[i][j].getSize());
+                for(j=0; j<tutorialField.length; j++){
+                    tutorialField[i][j].setX(j * tutorialField[i][j].getSize());
+                    tutorialField[i][j].setY(i * tutorialField[i][j].getSize());
+                }  
+            }
+        
         tutorial.setGameField(tutorialField);
         levels.add(tutorial);
         levels.add(new Level("Level 1", 1));

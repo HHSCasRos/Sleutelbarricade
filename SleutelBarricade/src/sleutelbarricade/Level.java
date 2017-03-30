@@ -34,11 +34,6 @@ public class Level {
     
     public void setGameField(Field[][] fields) {
         this.fields = fields;
-        for(int i = 0; i < gameFieldSize; i++){
-            for(int j = 0; j < gameFieldSize; j++){
-                fields[i][j] = new WalkWay();
-            }
-        }
     }
     
     public Field[][] getGameField(){
