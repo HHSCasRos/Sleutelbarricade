@@ -12,8 +12,7 @@ public class GameFieldViewer  extends JFrame{
     private int fieldSize;
     private int gameFieldSize;
     
-    public GameFieldViewer(Level level) { 
-        this.setSize(900,900);
+    public GameFieldViewer(Level level) {
         this.component = new GameField(level);
         
         this.fieldSize = component.getFieldSize();
@@ -21,6 +20,7 @@ public class GameFieldViewer  extends JFrame{
         
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
+        this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         
         add(component);
     }
