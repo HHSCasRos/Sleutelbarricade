@@ -30,8 +30,6 @@ public class Level {
         this.idLevel = idLevel;
         this.niveau = niveau;
         this.paused = false;
-        
-        createGameField();
     }
     
     public void createGameField() {

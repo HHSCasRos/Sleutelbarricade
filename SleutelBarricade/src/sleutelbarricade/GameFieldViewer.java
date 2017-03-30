@@ -22,12 +22,10 @@ public class GameFieldViewer  extends JFrame{
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         
-//        JPanel panel = new JPanel();
-//        panel.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-//        panel.add(component);
-//        
-//        add(panel);
+        JPanel panel = new JPanel();
+        panel.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        panel.add(component);
         
-        add(component);
+        add(panel);
     }
 }
