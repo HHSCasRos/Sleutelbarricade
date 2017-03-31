@@ -2,17 +2,12 @@ package gamefieldtest;
 
 import java.awt.Color;
 
-public class Field {
+public abstract class Field {
     private static final int size = 80;
     private int x;
     private int y;
     private boolean hasPlayer;
     private Color color;
-    
-    public Field(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
     
     public int getSize() {
         return size;

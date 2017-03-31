@@ -7,7 +7,7 @@ public class WalkField extends Field{
     private Key key;
     
     public WalkField() {
-        hasKey = false;
+    
     }
     
     public WalkField(Key k) {
