@@ -31,7 +31,7 @@ public class Barricade extends Field{
             isOpen = true;
             
             //make the barricade a fake walkway
-            hasPlayer = true;
+            super.setMoveThru(true);
             super.setColor(Color.GRAY);
             
             return true;

@@ -27,6 +27,7 @@ public class GameFieldViewer  extends JFrame{
         this.fieldSize = component.getFieldSize();
         this.gameFieldSize = component.getGameFieldSize();
         
+        //define and set framesize
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 39);
