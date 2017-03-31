@@ -14,9 +14,11 @@ public class GameFieldViewer  extends JFrame{
     private int fieldSize;
     private int gameFieldSize;
     private Level level;
+    private Field[][] fields;
     
     public GameFieldViewer(Level level) {
         this.level = level;
+        this.fields = level.getGameField();
         this.component = new GameField(level);
         
         KeyListener listener = new KeyListener1();
@@ -32,7 +34,7 @@ public class GameFieldViewer  extends JFrame{
         add(component);
     }
     
-    class KeyListener1 implements KeyListener {        
+    class KeyListener1 implements KeyListener {         
         @Override
         public void keyTyped(KeyEvent e) {
             
