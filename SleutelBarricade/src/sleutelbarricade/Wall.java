@@ -6,6 +6,7 @@ public class Wall extends Field{
 
     public Wall() {
         super.setColor(Color.RED);
+        super.setMoveThru(false);
     }
     
     @Override

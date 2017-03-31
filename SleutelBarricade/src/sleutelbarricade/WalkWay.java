@@ -9,11 +9,13 @@ public class WalkWay extends Field{
     public WalkWay(){
         this.hasKey = false;
         super.setColor(Color.GRAY);
+        super.setMoveThru(true);
     }
     public WalkWay(Key key){
         this.key = key;
         this.hasKey = true;
         super.setColor(Color.WHITE);
+        super.setMoveThru(true);
     }
     
     @Override

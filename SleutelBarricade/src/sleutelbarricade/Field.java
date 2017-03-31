@@ -6,6 +6,7 @@ public abstract class Field {
     private static final int size = 40;
     private int x;
     private int y;
+    private boolean moveThru;
     protected boolean hasPlayer;
     private Color color;
     
@@ -35,5 +36,12 @@ public abstract class Field {
     
     public int getSize(){
         return size;
+    }
+    
+    public boolean canMoveThru() {
+        return moveThru;
+    }
+    public void setMoveThru(boolean moveThru) {
+        this.moveThru = moveThru;
     }
 }
