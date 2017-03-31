@@ -43,25 +43,25 @@ public class GameFieldViewer  extends JFrame{
         @Override
         public void keyPressed(KeyEvent e) {
             
-            if(e.getKeyCode() == KeyEvent.VK_W){
+            if(e.getKeyCode() == KeyEvent.VK_UP){
                 if(level.getPlayer().getY() > 0 ){
                     level.getPlayer().move(0, -fieldSize);
                 }
             }
                 
-            if(e.getKeyCode() == KeyEvent.VK_A){
+            if(e.getKeyCode() == KeyEvent.VK_LEFT){
                 if(level.getPlayer().getX() > 0 ){
                     level.getPlayer().move(-fieldSize, 0);
                 }
             }
             
-            if(e.getKeyCode() == KeyEvent.VK_S){
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
                 if(level.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
                     level.getPlayer().move(0, +fieldSize);
                 }
             }
             
-            if(e.getKeyCode() == KeyEvent.VK_D){
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                 if(level.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
                     level.getPlayer().move(+fieldSize, 0);
                 }
