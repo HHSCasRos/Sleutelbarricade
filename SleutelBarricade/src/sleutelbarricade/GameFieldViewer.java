@@ -49,37 +49,37 @@ public class GameFieldViewer  extends JFrame{
 
         @Override
         public void keyReleased(KeyEvent e) {
-            int i = level.getPlayer().getX()/fieldSize;
-            int j = level.getPlayer().getY()/fieldSize;
+            int j = level.getPlayer().getX()/fieldSize;
+            int i = level.getPlayer().getY()/fieldSize;
             //walk up
-            if(e.getKeyCode() == KeyEvent.VK_W){
+            if(e.getKeyCode() == KeyEvent.VK_UP){
                 if(level.getPlayer().getY() > 0 ){
-                    if(fields[i][j].canMoveThru()) {
+                    if(fields[i-1][j].canMoveThru()) {
                         level.getPlayer().move(0, -fieldSize);
                     }
                 }
                 
             }
             //walk left
-            if(e.getKeyCode() == KeyEvent.VK_A){
+            if(e.getKeyCode() == KeyEvent.VK_LEFT){
                 if(level.getPlayer().getX() > 0 ){
-                    if(fields[i][j].canMoveThru()) {
+                    if(fields[i][j-1].canMoveThru()) {
                         level.getPlayer().move(-fieldSize, 0);
                     }
                 }
             }
             //walk down
-            if(e.getKeyCode() == KeyEvent.VK_S){
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
                 if(level.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
-                    if(fields[i][j].canMoveThru()) {
+                    if(fields[i+1][j].canMoveThru()) {
                         level.getPlayer().move(0, +fieldSize);
                     }
                 }
             }
             //walk right
-            if(e.getKeyCode() == KeyEvent.VK_D){
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                 if(level.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
-                    if(fields[i][j].canMoveThru()) {
+                    if(fields[i][j+1].canMoveThru()) {
                         level.getPlayer().move(+fieldSize, 0);
                     }
                 }

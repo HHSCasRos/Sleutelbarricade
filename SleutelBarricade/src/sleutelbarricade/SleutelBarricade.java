@@ -13,7 +13,7 @@ public class SleutelBarricade {
         for(int i = 0; i < tutorialField.length; i++){
             for(int j = 0; j < tutorialField.length; j++){
                 if(j == 1){
-                    tutorialField[i][j] = new Barricade(100);
+                    tutorialField[i][j] = new Wall();
                 }else if(i == 2 && j == 0) {
                     tutorialField[i][j] = new WalkWay(tutorialKey1);
                 }else if(i == 2 && j == 2) {
