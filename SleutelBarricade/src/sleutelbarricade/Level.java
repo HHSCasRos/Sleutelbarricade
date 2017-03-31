@@ -7,6 +7,7 @@ public class Level {
     private final int niveau;//1=low, 2=medium, 3=high
     private Field[][] fields;
     private int gameFieldSize;
+    private Player player;
     
     public Level(String idLevel, int niveau) {
         switch(niveau) {
@@ -30,6 +31,7 @@ public class Level {
         this.idLevel = idLevel;
         this.niveau = niveau;
         this.paused = false;
+        this.player = new Player(0,0);
     }
     
     public void setGameField(Field[][] fields) {
@@ -60,5 +62,9 @@ public class Level {
     
     public int getGameFieldSize() {
         return this.gameFieldSize;
+    }
+    
+    public Player getPlayer() {
+        return player;
     }
 }

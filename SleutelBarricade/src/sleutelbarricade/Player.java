@@ -1,16 +1,20 @@
 package sleutelbarricade;
 
+import java.awt.Color;
+
 public class Player {
     private String name;
     private boolean hasKey;
     private Key key;
     private int x;
     private int y;
+    private Color color;
     
     public Player(int x, int y) {
         this.x += x;
         this.y += y;
         key = new Key(0);
+        this.color = Color.BLUE;
     }
     
     public void move(int x, int y){
@@ -42,5 +46,9 @@ public class Player {
     }
     public void setY(int y) {
         this.y = y;
+    }
+    
+    public Color getColor() {
+        return this.color;
     }
 }

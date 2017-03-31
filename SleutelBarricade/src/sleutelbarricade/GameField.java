@@ -6,9 +6,11 @@ import java.awt.Graphics;
 public class GameField extends JComponent{
     private int size;
     private Field[][] fields;
+    private Level level;
 
     public GameField(Level l) {
-        fields = l.getGameField();
+        this.level = l;
+        fields = level.getGameField();
         this.size = fields.length;
     }
     
@@ -23,6 +25,8 @@ public class GameField extends JComponent{
                             fields[i][j].getSize()   );
             }
         }
+        g.setColor(level.getPlayer().getColor());
+        g.fillRect(level.getPlayer().getX() + 15, level.getPlayer().getY() + 15, 10, 10);
     }
     
     //setters and getters

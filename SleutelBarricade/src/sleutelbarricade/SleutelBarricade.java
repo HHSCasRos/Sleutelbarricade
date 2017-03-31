@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 public class SleutelBarricade {
     
     public static void main(String[] args) {
-        
         ArrayList<Level> levels = new ArrayList();
         Level tutorial = new Level("Tutorial", 0);
         Key tutorialKey1 = new Key(100);
