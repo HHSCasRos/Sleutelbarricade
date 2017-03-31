@@ -25,9 +25,15 @@ public class Barricade extends Field{
         System.out.println("Sorry, this key doesn't fit.");
     }
     
+    //check if the key the player is holding has the same pincode
     public boolean keyFits(Key k){
         if(k.getIdCode() == idCode) {
             isOpen = true;
+            
+            //make the barricade a fake walkway
+            hasPlayer = true;
+            super.setColor(Color.GRAY);
+            
             return true;
         }else{
             message();
