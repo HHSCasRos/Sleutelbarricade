@@ -95,9 +95,10 @@ public class GameFieldViewer  extends JFrame{
             
             component.repaint();
         }
-
+        //checks if the field the player is standing on has a key
+        //and if it does, calls the pickUpKey method in player
         private void checkIfWalkWayHasKey() {
-            if(fields[level.getPlayer().getX()][level.getPlayer().getY()] instanceof WalkWay){
+            if(fields[level.getPlayer().getX()][level.getPlayer().getY()] instanceof WalkWay){//make sure it's possible for the current field to have a key
                 WalkWay currentField = (WalkWay) fields[level.getPlayer().getX()][level.getPlayer().getY()];
                 if(currentField.isHasKey()){
                     level.getPlayer().pickUpKey();
