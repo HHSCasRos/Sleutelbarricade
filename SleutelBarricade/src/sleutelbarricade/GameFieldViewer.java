@@ -60,7 +60,7 @@ public class GameFieldViewer  extends JFrame{
                         level.getPlayer().move(0, -fieldSize);
                     }
                 }
-                
+                checkIfWalkWayHasKey();
             }
             //walk left
             if(e.getKeyCode() == KeyEvent.VK_LEFT){
@@ -69,6 +69,7 @@ public class GameFieldViewer  extends JFrame{
                         level.getPlayer().move(-fieldSize, 0);
                     }
                 }
+                checkIfWalkWayHasKey();
             }
             //walk down
             if(e.getKeyCode() == KeyEvent.VK_DOWN){
@@ -77,6 +78,7 @@ public class GameFieldViewer  extends JFrame{
                         level.getPlayer().move(0, +fieldSize);
                     }
                 }
+                checkIfWalkWayHasKey();
             }
             //walk right
             if(e.getKeyCode() == KeyEvent.VK_RIGHT){
@@ -85,12 +87,22 @@ public class GameFieldViewer  extends JFrame{
                         level.getPlayer().move(+fieldSize, 0);
                     }
                 }
+                checkIfWalkWayHasKey();
             }
             
             System.out.println("X: " + level.getPlayer().getX() + "\n"
                              + "Y: " + level.getPlayer().getY());
             
             component.repaint();
+        }
+
+        private void checkIfWalkWayHasKey() {
+            if(fields[level.getPlayer().getX()][level.getPlayer().getY()] instanceof WalkWay){
+                WalkWay currentField = (WalkWay) fields[level.getPlayer().getX()][level.getPlayer().getY()];
+                if(currentField.isHasKey()){
+                    level.getPlayer().pickUpKey();
+                }
+            }
         }
     }
 }
