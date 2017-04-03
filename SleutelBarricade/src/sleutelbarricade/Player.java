@@ -23,6 +23,7 @@ public class Player {
     }
     
     public void pickUpKey(){
+            System.out.print("pick up the key");
         if(hasKey){
             //ask player if he want's to pick up the key
         } else {

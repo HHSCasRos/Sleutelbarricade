@@ -50,45 +50,47 @@ public class GameFieldViewer  extends JFrame{
         @Override
         public void keyReleased(KeyEvent e) {
             //determine field coordinates of player
-            int j = level.getPlayer().getX()/fieldSize;
             int i = level.getPlayer().getY()/fieldSize;
+            int j = level.getPlayer().getX()/fieldSize;
             
             //walk up
             if(e.getKeyCode() == KeyEvent.VK_UP){
                 if(level.getPlayer().getY() > 0 ){
                     if(fields[i-1][j].canMoveThru()) {
                         level.getPlayer().move(0, -fieldSize);
+                        i--;
                     }
                 }
-                checkIfWalkWayHasKey();
             }
             //walk left
             if(e.getKeyCode() == KeyEvent.VK_LEFT){
                 if(level.getPlayer().getX() > 0 ){
                     if(fields[i][j-1].canMoveThru()) {
                         level.getPlayer().move(-fieldSize, 0);
+                        j--;
                     }
                 }
-                checkIfWalkWayHasKey();
             }
             //walk down
             if(e.getKeyCode() == KeyEvent.VK_DOWN){
                 if(level.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
                     if(fields[i+1][j].canMoveThru()) {
                         level.getPlayer().move(0, +fieldSize);
+                        i++;
                     }
                 }
-                checkIfWalkWayHasKey();
             }
             //walk right
             if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                 if(level.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
                     if(fields[i][j+1].canMoveThru()) {
                         level.getPlayer().move(+fieldSize, 0);
+                        j++;
                     }
                 }
-                checkIfWalkWayHasKey();
             }
+            
+            checkIfWalkWayHasKey(i, j);
             
             System.out.println("X: " + level.getPlayer().getX() + "\n"
                              + "Y: " + level.getPlayer().getY());
@@ -97,9 +99,9 @@ public class GameFieldViewer  extends JFrame{
         }
         //checks if the field the player is standing on has a key
         //and if it does, calls the pickUpKey method in player
-        private void checkIfWalkWayHasKey() {
-            if(fields[level.getPlayer().getX()][level.getPlayer().getY()] instanceof WalkWay){//make sure it's possible for the current field to have a key
-                WalkWay currentField = (WalkWay) fields[level.getPlayer().getX()][level.getPlayer().getY()];
+        private void checkIfWalkWayHasKey(int i, int j) {
+            if(fields[i][j] instanceof WalkWay){//make sure it's possible for the current field to have a key
+                WalkWay currentField = (WalkWay) fields[i][j];
                 if(currentField.isHasKey()){
                     level.getPlayer().pickUpKey();
                 }
