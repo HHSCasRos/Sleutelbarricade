@@ -24,10 +24,10 @@ public class GameFieldViewer  extends JFrame{
         KeyListener listener = new KeyListener1();
         this.addKeyListener(listener);
         
+        //define and set framesize based on the required size of GameField
         this.fieldSize = component.getFieldSize();
         this.gameFieldSize = component.getGameFieldSize();
         
-        //define and set framesize
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 39);
@@ -49,8 +49,10 @@ public class GameFieldViewer  extends JFrame{
 
         @Override
         public void keyReleased(KeyEvent e) {
+            //determine field coordinates of player
             int j = level.getPlayer().getX()/fieldSize;
             int i = level.getPlayer().getY()/fieldSize;
+            
             //walk up
             if(e.getKeyCode() == KeyEvent.VK_UP){
                 if(level.getPlayer().getY() > 0 ){

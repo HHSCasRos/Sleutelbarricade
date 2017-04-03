@@ -21,6 +21,7 @@ public class Barricade extends Field{
         }
     }
     
+    //message given if an incorrect key is used
     public void message(){
         System.out.println("Sorry, this key doesn't fit.");
     }
