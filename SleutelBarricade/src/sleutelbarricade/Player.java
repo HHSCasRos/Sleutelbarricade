@@ -23,7 +23,12 @@ public class Player {
     }
     
     public void pickUpKey(){
-        
+        if(hasKey){
+            //ask player if he want's to pick up the key
+        } else {
+            //pick up the key the player is standing on
+            
+        }
     }
 
     //setters and getters
