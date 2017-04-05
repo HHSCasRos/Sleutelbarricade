@@ -46,10 +46,10 @@ public class HomeScreen extends JFrame{
        
         @Override
         public void actionPerformed(ActionEvent event){
-            JFrame level = new GameFieldViewer(levels.get(0));
+            JFrame level = new GameFieldViewer(levels.get(0), frame);
             level.setVisible(true);
             level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.dispose();
+            frame.setVisible(false);
         }
     }
     

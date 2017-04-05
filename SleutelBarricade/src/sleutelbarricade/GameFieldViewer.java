@@ -16,12 +16,12 @@ public class GameFieldViewer  extends JFrame{
     private Level level;
     private Field[][] fields;
     
-    public GameFieldViewer(Level level) {
+    public GameFieldViewer(Level level, JFrame homeScreen) {
         this.level = level;
         this.fields = level.getGameField();
         this.component = new GameField(level);
         
-        KeyListener listener = new KeyListener1();
+        KeyListener listener = new KeyListener1(this, homeScreen);
         this.addKeyListener(listener);
         
         //define and set framesize based on the required size of GameField
@@ -35,7 +35,15 @@ public class GameFieldViewer  extends JFrame{
         add(component);
     }
     
-    class KeyListener1 implements KeyListener {         
+    class KeyListener1 implements KeyListener {   
+        private JFrame frame;
+        private JFrame homeScreen;
+        
+        public KeyListener1(JFrame frame, JFrame homeScreen) {
+            this.frame = frame;
+            this.homeScreen = homeScreen;
+        }
+        
         @Override
         public void keyTyped(KeyEvent e) {
             
@@ -99,6 +107,7 @@ public class GameFieldViewer  extends JFrame{
             }
             
             checkIfWalkWayHasKey(i, j);
+            checkIfEndFieldFound(i, j);
             
             System.out.println("X: " + level.getPlayer().getX() + "\n"
                              + "Y: " + level.getPlayer().getY());
@@ -122,6 +131,16 @@ public class GameFieldViewer  extends JFrame{
                 if(!currentField.open()) {
                     currentField.keyFits(level.getPlayer().getKey());
                 }
+            }
+        }
+        
+        private void checkIfEndFieldFound(int i, int j) {
+            if(fields[i][j] instanceof EndField){//make sure it's possible for the current field to have a key
+                EndField currentField = (EndField) fields[i][j];
+                currentField.endGame();
+                
+                homeScreen.setVisible(true);
+                frame.dispose();
             }
         }
     }
