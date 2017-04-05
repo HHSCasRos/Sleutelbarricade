@@ -32,6 +32,7 @@ public class Barricade extends Field{
             isOpen = true;
             
             //make the barricade a fake walkway
+            System.out.println("barricade opened");
             super.setMoveThru(true);
             super.setColor(Color.GRAY);
             

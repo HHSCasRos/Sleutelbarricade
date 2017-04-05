@@ -59,6 +59,8 @@ public class GameFieldViewer  extends JFrame{
                     if(fields[i-1][j].canMoveThru()) {
                         level.getPlayer().move(0, -fieldSize);
                         i--;
+                    }else{
+                       checkIfBaricadeCanOpen(i-1,j); 
                     }
                 }
             }
@@ -68,6 +70,8 @@ public class GameFieldViewer  extends JFrame{
                     if(fields[i][j-1].canMoveThru()) {
                         level.getPlayer().move(-fieldSize, 0);
                         j--;
+                    }else{
+                       checkIfBaricadeCanOpen(i,j-1); 
                     }
                 }
             }
@@ -77,6 +81,8 @@ public class GameFieldViewer  extends JFrame{
                     if(fields[i+1][j].canMoveThru()) {
                         level.getPlayer().move(0, +fieldSize);
                         i++;
+                    }else{
+                       checkIfBaricadeCanOpen(i+1,j); 
                     }
                 }
             }
@@ -86,6 +92,8 @@ public class GameFieldViewer  extends JFrame{
                     if(fields[i][j+1].canMoveThru()) {
                         level.getPlayer().move(+fieldSize, 0);
                         j++;
+                    }else{
+                       checkIfBaricadeCanOpen(i,j+1); 
                     }
                 }
             }
@@ -104,6 +112,15 @@ public class GameFieldViewer  extends JFrame{
                 WalkWay currentField = (WalkWay) fields[i][j];
                 if(currentField.isHasKey()){
                     level.getPlayer().pickUpKey(currentField.getKey());
+                }
+            }
+        }
+        
+        private void checkIfBaricadeCanOpen(int i, int j) {
+            if(fields[i][j] instanceof Barricade){//make sure it's possible for the current field to have a key
+                Barricade currentField = (Barricade) fields[i][j];
+                if(!currentField.open()) {
+                    currentField.keyFits(level.getPlayer().getKey());
                 }
             }
         }
