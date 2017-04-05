@@ -22,13 +22,15 @@ public class Player {
         this.y += y;
     }
     
-    public void pickUpKey(){
-            System.out.print("pick up the key");
+    public void pickUpKey(Key key){
+        System.out.println("picked up the "+ key.getIdCode() +" key");
+        
         if(hasKey){
             //ask player if he want's to pick up the key
+            this.key = key;
         } else {
             //pick up the key the player is standing on
-            
+            this.key = key;
         }
     }
 
