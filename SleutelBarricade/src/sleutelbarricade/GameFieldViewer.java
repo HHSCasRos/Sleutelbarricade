@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class GameFieldViewer  extends JFrame{
     private GameField component;
     private JPanel pausePanel;
+    private JPanel messagePanel;
     
     private final int FRAME_WIDTH;
     private final int FRAME_HEIGHT;
@@ -20,6 +21,9 @@ public class GameFieldViewer  extends JFrame{
     private Level level;
     private Level levelCopy;
     private Field[][] fields;
+    
+    private JTextArea tekstArea;
+    private JScrollPane scrollPane;
     
     public GameFieldViewer(Level level, HomeScreen homeScreen) {
         createPausePanel(homeScreen);
@@ -42,12 +46,18 @@ public class GameFieldViewer  extends JFrame{
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 39);
+        
+        tekstArea = new JTextArea(8,50);
+        tekstArea.setEditable(false);
+        scrollPane = new JScrollPane(tekstArea);
 
         add(pausePanel, BorderLayout.NORTH);        
         add(component, BorderLayout.CENTER);
+        add(messagePanel, BorderLayout.SOUTH);
         
         component.setVisible(true);
         pausePanel.setVisible(false);
+        messagePanel.setVisible(false);
     }
     
     public void createPausePanel(HomeScreen homeFrame){
@@ -67,7 +77,11 @@ public class GameFieldViewer  extends JFrame{
         pausePanel.add(homeScreen);
         add(pausePanel);
     }
-    
+    public void createMessageBoard(HomeScreen homeFrame){
+        messagePanel = new JPanel();
+        messagePanel.add(scrollPane);
+        add(messagePanel);
+    }
     
     class KeyListener1 implements KeyListener {   
         private JFrame frame;
@@ -101,7 +115,9 @@ public class GameFieldViewer  extends JFrame{
                 paused = !paused;
                 component.setVisible(!paused);
                 pausePanel.setVisible(paused);
-                System.out.println("pause key pressed " + paused);
+                System.out.println();
+                
+                tekstArea.append("pause key pressed " + paused + "/n");//notify player
             }
             
             if(!pausePanel.isVisible()){//disable walking if game is paused
@@ -205,7 +221,8 @@ public class GameFieldViewer  extends JFrame{
             paused = !paused;
             component.setVisible(!paused);
             pausePanel.setVisible(paused);
-            System.out.println("pause key pressed " + paused);
+            
+            tekstArea.append("pause key pressed " + paused + "/n");//notify player
         }
     }
     
