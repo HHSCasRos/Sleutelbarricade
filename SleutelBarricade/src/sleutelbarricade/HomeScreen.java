@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class HomeScreen extends JFrame{
@@ -16,6 +17,7 @@ public class HomeScreen extends JFrame{
     private final ArrayList<ActionListener> listener;
     private final ArrayList<Level> levels;
     private final int amountOfLevels;
+    private JLabel label;
     
     public HomeScreen(ArrayList<Level> levels) {
         this.amountOfLevels = levels.size();
@@ -25,6 +27,7 @@ public class HomeScreen extends JFrame{
         //create all buttons
         this.button = new ArrayList();
         this.listener = new ArrayList();
+        this.label = new JLabel();
         
         for(int i = 0; i < this.amountOfLevels; i++){
             button.add(new JButton(levels.get(i).getIdLevel()));
@@ -35,7 +38,19 @@ public class HomeScreen extends JFrame{
             button.get(i).addActionListener(listener.get(i));
         }
         
+        checklevels();
+        
         createPanel();
+    }
+
+    private void checklevels() {
+        for(int i = 0; i < this.levels.size(); i++){
+            if(levels.get(i).isGehaald()){
+                this.label.setText("Je hebt alle levels tot en met lv " + levels.get(i).getIdLevel() + " Gehaald!");
+            } else {
+                this.label.setText("Je hebt nog geen levels gehaald");
+            }
+        }
     }
     
     class LevelSelectListener implements ActionListener{
@@ -67,6 +82,7 @@ public class HomeScreen extends JFrame{
         for(int i = 0; i < button.size(); i++){
             panel.add(button.get(i));
         }
+        panel.add(label);
         
         add(panel);
     }

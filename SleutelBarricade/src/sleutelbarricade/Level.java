@@ -8,6 +8,7 @@ public class Level {
     private Field[][] fields;
     private int gameFieldSize;
     private Player player;
+    private boolean gehaald;
     
     public Level(String idLevel, int niveau) {
         switch(niveau) {
@@ -32,6 +33,7 @@ public class Level {
         this.niveau = niveau;
         this.paused = false;
         this.player = new Player(0,0);
+        this.gehaald = false;
     }
     
     public void setGameField(Field[][] fields) {
@@ -66,5 +68,12 @@ public class Level {
     
     public Player getPlayer() {
         return player;
+    }
+    
+    public boolean isGehaald() {
+        return gehaald;
+    }
+    public void setGehaald(boolean gehaald) {
+        this.gehaald = gehaald;
     }
 }

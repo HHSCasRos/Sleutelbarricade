@@ -172,7 +172,7 @@ public class GameFieldViewer  extends JFrame{
         }
         
         private void checkIfBaricadeCanOpen(int i, int j) {
-            if(fields[i][j] instanceof Barricade){//make sure it's possible for the current field to have a key
+            if(fields[i][j] instanceof Barricade){
                 Barricade currentField = (Barricade) fields[i][j];
                 if(!currentField.open()) {
                     currentField.keyFits(level.getPlayer().getKey());
@@ -181,11 +181,14 @@ public class GameFieldViewer  extends JFrame{
         }
         
         private void checkIfEndFieldFound(int i, int j) {
-            if(fields[i][j] instanceof EndField){//make sure it's possible for the current field to have a key
+            if(fields[i][j] instanceof EndField){
                 EndField currentField = (EndField) fields[i][j];
                 currentField.endGame();
                 
+                level.setGehaald(true);
+                
                 homeScreen.setVisible(true);
+                
                 frame.dispose();
             }
         }
