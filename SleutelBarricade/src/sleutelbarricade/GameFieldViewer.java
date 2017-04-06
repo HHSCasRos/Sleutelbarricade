@@ -262,4 +262,5 @@ public class GameFieldViewer  extends JFrame{
             frame.dispose();
         }
     }
+    
 }

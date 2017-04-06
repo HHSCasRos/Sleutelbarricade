@@ -8,16 +8,21 @@ public class SleutelBarricade {
     public static void main(String[] args) {
         ArrayList<Level> levels = new ArrayList();
         
+        //create key types
+        Key key100 = new Key(100);
+        Key key200 = new Key(200);
+        Key key300 = new Key(300);
+        Key key400 = new Key(400);
+        
         //tutorial level
         Level tutorial = new Level("Tutorial", 0);
-        Key tutorialKey1 = new Key(100);
         Field[][] tutorialField = new Field[tutorial.getGameFieldSize()][tutorial.getGameFieldSize()];
         for(int i = 0; i < tutorialField.length; i++){
             for(int j = 0; j < tutorialField.length; j++){
                 if(j == 1 && i == 1){
                     tutorialField[i][j] = new Wall();
                 }else if(i == 2 && j == 0) {
-                    tutorialField[i][j] = new WalkWay(tutorialKey1);
+                    tutorialField[i][j] = new WalkWay(key100);
                 }else if(i == 2 && j == 2) {
                     tutorialField[i][j] = new EndField();
                 }else if(j == 1 && i == 2){
@@ -36,12 +41,54 @@ public class SleutelBarricade {
         
         
         //level 1
-        Level level1 = new Level("Level 1", 2);
+        Level level1 = new Level("level1", 1);
+        Field[][] level1Field = new Field[level1.getGameFieldSize()][level1.getGameFieldSize()];
+        for(int i = 0; i < level1Field.length; i++){
+            for(int j = 0; j < level1Field.length; j++){
+                if(i == 3 && j == 0 || i == 3 && j == 3){
+                    level1Field[i][j] = new Wall();
+                }else if(i == 1 & j == 1 || i == 1 & j == 2 || i == 1 & j == 4) {
+                    level1Field[i][j] = new Wall();
+                }else if(i == 4 && j == 3) {
+                    level1Field[i][j] = new Wall();
+                }else if(i == 0 && j == 1) {
+                    level1Field[i][j] = new WalkWay(key100);
+                }else if(i == 0 && j == 2) {
+                    level1Field[i][j] = new WalkWay(key300);
+                }else if(i == 0 && j == 4) {
+                    level1Field[i][j] = new WalkWay(key200);
+                    }else if(i == 4 && j == 4) {
+                    level1Field[i][j] = new WalkWay(key400);
+                }else if(i == 4 && j == 0) {
+                    level1Field[i][j] = new EndField();
+                }else if(i == 1 && j == 0){
+                    level1Field[i][j] = new Barricade(100);
+                }else if(i == 4 && j == 1){
+                    level1Field[i][j] = new Barricade(300);
+                }else if(i == 1 && j == 3){
+                    level1Field[i][j] = new Barricade(400);
+                }else if(i == 3 && j == 1 || i == 3 && j == 2){
+                    level1Field[i][j] = new Barricade(200);
+                }else if(i == 3 && j == 4){
+                    level1Field[i][j] = new Barricade(100);
+                }else{
+                    level1Field[i][j] = new WalkWay();
+                }
+            }
+        }
+        createField(level1Field);
+        
+        level1.setGameField(level1Field);
+        levels.add(level1);
+        
+        
+        //level 2
+        Level level2 = new Level("Level 2", 2);
         Key level1key1 = new Key(100);
         Key level1key2 = new Key(300);
         Key level1key3 = new Key(100);
         Key level1key4 = new Key(200);
-        Field[][] Level1Field = new Field[level1.getGameFieldSize()][level1.getGameFieldSize()];
+        Field[][] Level1Field = new Field[level2.getGameFieldSize()][level2.getGameFieldSize()];
         for(int i = 0; i < Level1Field.length; i++){
             for(int j = 0; j < Level1Field.length; j++){
                 if((i != 1 && i != 2) && j == 1){//row 2
@@ -142,12 +189,10 @@ public class SleutelBarricade {
         }
         createField(Level1Field);
         
-        level1.setGameField(Level1Field);
-        levels.add(level1);
+        level2.setGameField(Level1Field);
+        levels.add(level2);
         
-        
-        levels.add(new Level("Level 2", 1));
-        
+
         JFrame frame = new HomeScreen(levels);
         
         frame.setTitle("Home Menu");
