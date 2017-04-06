@@ -10,7 +10,6 @@ public class GameFieldViewer  extends JFrame{
     private final int FRAME_WIDTH;
     private final int FRAME_HEIGHT;
     
-    private int size;
     private int fieldSize;
     private int gameFieldSize;
     private Level level;
@@ -18,8 +17,9 @@ public class GameFieldViewer  extends JFrame{
     
     public GameFieldViewer(Level level, JFrame homeScreen) {
         this.level = level;
-        this.fields = level.getGameField();
-        this.component = new GameField(level);
+        
+        this.fields = this.level.getGameField();
+        this.component = new GameField(this.level);
         
         KeyListener listener = new KeyListener1(this, homeScreen);
         this.addKeyListener(listener);
