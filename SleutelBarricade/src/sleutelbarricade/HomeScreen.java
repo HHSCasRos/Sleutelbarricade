@@ -44,14 +44,16 @@ public class HomeScreen extends JFrame{
     }
 
     public void checklevels() {
+        boolean j = false;
         for(int i = 0; i < this.levels.size(); i++){
             if(levels.get(i).isGehaald()){
                 this.label.setText("Je hebt alle levels tot en met lv " + levels.get(i).getIdLevel() + " Gehaald!");
-            } else {
+                j = true;
+            } else if(j == false){
                 this.label.setText("Je hebt nog geen levels gehaald");
             }
         }
-        
+        repaint();
     }
     
     class LevelSelectListener implements ActionListener{
