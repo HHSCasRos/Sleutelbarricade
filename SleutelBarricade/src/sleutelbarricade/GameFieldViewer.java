@@ -50,6 +50,7 @@ public class GameFieldViewer  extends JFrame{
         tekstArea = new JTextArea(8,50);
         tekstArea.setEditable(false);
         scrollPane = new JScrollPane(tekstArea);
+        //MessageConsole mc = new MessageConsole(tekstArea);
 
         add(pausePanel, BorderLayout.NORTH);        
         add(component, BorderLayout.CENTER);
@@ -117,7 +118,7 @@ public class GameFieldViewer  extends JFrame{
                 pausePanel.setVisible(paused);
                 System.out.println();
                 
-                tekstArea.append("pause key pressed " + paused + "/n");//notify player
+                tekstArea.insert("pause key pressed " + paused + "/n", 0);//notify player
             }
             
             if(!pausePanel.isVisible()){//disable walking if game is paused
@@ -222,7 +223,7 @@ public class GameFieldViewer  extends JFrame{
             component.setVisible(!paused);
             pausePanel.setVisible(paused);
             
-            tekstArea.append("pause key pressed " + paused + "/n");//notify player
+            tekstArea.insert("pause key pressed " + paused + "/n", 0);//notify player
         }
     }
     
