@@ -25,7 +25,7 @@ public class GameFieldViewer  extends JFrame{
     
     public GameFieldViewer(Level level, HomeScreen homeScreen) {
         createPausePanel(homeScreen);
-        createMessageBoard(homeScreen);
+        createMessageBoard();
         
         this.setLayout(new BorderLayout());
         this.level = level;
@@ -73,7 +73,7 @@ public class GameFieldViewer  extends JFrame{
         add(pausePanel);
     }
     
-    public void createMessageBoard(HomeScreen homeFrame){
+    public void createMessageBoard(){
         label = new JLabel();
         messagePanel = new JPanel();
         messagePanel.add(label);
@@ -192,7 +192,6 @@ public class GameFieldViewer  extends JFrame{
         private void checkIfEndFieldFound(int i, int j) {
             if(fields[i][j] instanceof EndField){
                 EndField currentField = (EndField) fields[i][j];
-                currentField.endGame();
                 
                 level.setGehaald(true);
                 

@@ -13,7 +13,7 @@ public class EndField extends Field{
     @Override
     public void hasPlayer(int playerPosition){
         if(super.getX() == playerPosition){
-            endGame();
+            
         }else{
             hasPlayer = false;
         }
@@ -21,9 +21,5 @@ public class EndField extends Field{
     
     public void message(){
         System.out.println("Victory!");
-    }
-    
-    public void endGame(){
-        
     }
 }

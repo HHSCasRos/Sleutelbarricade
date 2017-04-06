@@ -44,17 +44,11 @@ public class Level {
         return fields;
     }
     
-    public void start() {
-        
-    }
     public void pauseGame(){
         paused = true;
     }
     public void resumeGame() {
         paused = false;
-    }
-    public void reStart(){
-        
     }
 
     public String getIdLevel() {
