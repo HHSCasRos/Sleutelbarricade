@@ -32,6 +32,15 @@ public class WalkWay extends Field{
         return hasKey;
     }
 
+    public void setKey(Key key){
+        this.key = key;
+        super.setColor(Color.GRAY);
+        if(this.key == null){
+            this.hasKey = false;
+        } else {
+            this.hasKey = true;
+        }
+    }
     public Key getKey() {
         return key;
     }

@@ -120,7 +120,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof WalkWay){//make sure it's possible for the current field to have a key
                 WalkWay currentField = (WalkWay) fields[i][j];
                 if(currentField.isHasKey()){
-                    level.getPlayer().pickUpKey(currentField.getKey());
+                    level.getPlayer().pickUpKey(currentField);
                 }
             }
         }

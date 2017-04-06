@@ -22,16 +22,17 @@ public class Player {
         this.y += y;
     }
     
-    public void pickUpKey(Key key){
-        System.out.println("picked up the "+ key.getIdCode() +" key");
+    public void pickUpKey(WalkWay walkway){
+        System.out.println("picked up the "+ walkway.getKey().getIdCode() +" key");
         
         if(hasKey){
             //ask player if he want's to pick up the key
-            this.key = key;
+            this.key = walkway.getKey();
         } else {
             //pick up the key the player is standing on
-            this.key = key;
+            this.key = walkway.getKey();
         }
+        walkway.setKey(null);
     }
 
     //setters and getters
