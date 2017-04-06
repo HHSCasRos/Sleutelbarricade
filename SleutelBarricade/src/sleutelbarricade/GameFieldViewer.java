@@ -102,7 +102,7 @@ public class GameFieldViewer  extends JFrame{
         
         @Override
         public void keyReleased(KeyEvent e) {
-            label.setText("\"p\": toggel het pauseMenu.");
+            label.setText("\"p\": toggle het pauseMenu.");
             //determine field coordinates of player
             int i = level.getPlayer().getY()/fieldSize;
             int j = level.getPlayer().getX()/fieldSize;
