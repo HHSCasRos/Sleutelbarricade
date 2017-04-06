@@ -14,12 +14,14 @@ public class SleutelBarricade {
         Field[][] tutorialField = new Field[tutorial.getGameFieldSize()][tutorial.getGameFieldSize()];
         for(int i = 0; i < tutorialField.length; i++){
             for(int j = 0; j < tutorialField.length; j++){
-                if(j == 1){
+                if(j == 1 && i == 1){
                     tutorialField[i][j] = new Barricade(100);
                 }else if(i == 2 && j == 0) {
                     tutorialField[i][j] = new WalkWay(tutorialKey1);
                 }else if(i == 2 && j == 2) {
                     tutorialField[i][j] = new EndField();
+                }else if(j == 1 && i == 0 || i == 2){
+                    tutorialField[i][j] = new Wall();
                 }else{
                     tutorialField[i][j] = new WalkWay();
                 }
