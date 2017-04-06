@@ -54,12 +54,12 @@ public class GameFieldViewer  extends JFrame{
         createMessageBoard(homeScreen);
 
         add(pausePanel, BorderLayout.NORTH);
-        add(component, BorderLayout.CENTER);
         add(messagePanel, BorderLayout.SOUTH);
+        add(component, BorderLayout.CENTER);
         
-        component.setVisible(true);
         pausePanel.setVisible(false);
         messagePanel.setVisible(false);
+        component.setVisible(true);
     }
     
     public void createPausePanel(HomeScreen homeFrame){
@@ -122,7 +122,7 @@ public class GameFieldViewer  extends JFrame{
                 tekstArea.insert("pause key pressed " + paused + "/n", 0);//notify player
             }
             
-            if(!pausePanel.isVisible()){//disable walking if game is paused
+            if(component.isVisible()){//disable walking if game is paused
                 //walk up
                 if(e.getKeyCode() == KeyEvent.VK_UP){
                     if(level.getPlayer().getY() > 0 ){
