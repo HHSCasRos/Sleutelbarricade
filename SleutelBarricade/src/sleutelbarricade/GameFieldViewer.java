@@ -3,9 +3,12 @@ package sleutelbarricade;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 public class GameFieldViewer  extends JFrame{
     private GameField component;
+    private JPanel pausePanel;
     
     private final int FRAME_WIDTH;
     private final int FRAME_HEIGHT;
@@ -16,6 +19,9 @@ public class GameFieldViewer  extends JFrame{
     private Field[][] fields;
     
     public GameFieldViewer(Level level, JFrame homeScreen) {
+        createPausePanel();
+        
+        this.setLayout(new BorderLayout());
         this.level = level;
         
         this.fields = this.level.getGameField();
@@ -32,8 +38,28 @@ public class GameFieldViewer  extends JFrame{
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 39);
         
-        add(component);
+        add(component, BorderLayout.CENTER);
+        
+        component.setVisible(true);
+        pausePanel.setVisible(false);
     }
+    
+    public void createPausePanel(){
+        JButton resume = new JButton("Resume");
+        
+        JButton restart = new JButton("Restart");
+        
+        JButton HomeScreen = new JButton("HomeScreen");
+        
+        
+        pausePanel = new JPanel();
+        pausePanel.setLayout(new GridLayout(3,1));
+        pausePanel.add(resume);
+        pausePanel.add(restart);
+        pausePanel.add(HomeScreen);
+        add(pausePanel);
+    }
+    
     
     class KeyListener1 implements KeyListener {   
         private JFrame frame;
@@ -66,6 +92,8 @@ public class GameFieldViewer  extends JFrame{
             //pause/unpause the game
             if(e.getKeyCode() == KeyEvent.VK_PAUSE){
                 paused = !paused;
+                component.setVisible(!paused);
+                pausePanel.setVisible(paused);
                 System.out.println("pause key pressed " + paused);
             }
             
