@@ -38,10 +38,12 @@ public class GameFieldViewer  extends JFrame{
     class KeyListener1 implements KeyListener {   
         private JFrame frame;
         private JFrame homeScreen;
+        private boolean paused;
         
         public KeyListener1(JFrame frame, JFrame homeScreen) {
             this.frame = frame;
             this.homeScreen = homeScreen;
+            this.paused = false;
         }
         
         @Override
@@ -61,19 +63,13 @@ public class GameFieldViewer  extends JFrame{
             int i = level.getPlayer().getY()/fieldSize;
             int j = level.getPlayer().getX()/fieldSize;
             
-            boolean paused = false;
-            
             //pause the game
             if(e.getKeyCode() == KeyEvent.VK_PAUSE){
-                if(paused == true){
-                    paused = false;
-                } else {
-                    paused = true;
-                }
+                paused = !paused;
                 System.out.println("pause key pressed " + paused);
             }
             
-            if(paused == true){
+            if(paused != true){
                 //walk up
                 if(e.getKeyCode() == KeyEvent.VK_UP){
                     if(level.getPlayer().getY() > 0 ){
