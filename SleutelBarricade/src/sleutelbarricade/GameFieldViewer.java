@@ -1,10 +1,15 @@
 package sleutelbarricade;
 
+import java.awt.AWTException;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Robot;
+import java.util.logging.Logger;
 
 public class GameFieldViewer  extends JFrame{
     private GameField component;
@@ -16,19 +21,22 @@ public class GameFieldViewer  extends JFrame{
     private int fieldSize;
     private int gameFieldSize;
     private Level level;
+    private Level levelCopy;
     private Field[][] fields;
     
     public GameFieldViewer(Level level, JFrame homeScreen) {
-        createPausePanel();
+        createPausePanel(homeScreen);
         
         this.setLayout(new BorderLayout());
         this.level = level;
+        this.levelCopy = /*new Level*/this.level;
         
-        this.fields = this.level.getGameField();
-        this.component = new GameField(this.level);
+        this.fields = this.levelCopy.getGameField();
+        this.component = new GameField(this.levelCopy);
         
         KeyListener listener = new KeyListener1(this, homeScreen);
         this.addKeyListener(listener);
+        pausePanel.addKeyListener(listener);
         
         //define and set framesize based on the required size of GameField
         this.fieldSize = component.getFieldSize();
@@ -37,26 +45,29 @@ public class GameFieldViewer  extends JFrame{
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 39);
-        
+
+        add(pausePanel, BorderLayout.NORTH);        
         add(component, BorderLayout.CENTER);
         
         component.setVisible(true);
         pausePanel.setVisible(false);
     }
     
-    public void createPausePanel(){
+    public void createPausePanel(JFrame homeFrame){
         JButton resume = new JButton("Resume");
+        resume.addActionListener(new ResumeListener());
         
         JButton restart = new JButton("Restart");
+        restart.addActionListener(new RestartListener(this, level, homeFrame));
         
-        JButton HomeScreen = new JButton("HomeScreen");
-        
+        JButton homeScreen = new JButton("HomeScreen");
+        homeScreen.addActionListener(new HomeScreenListener(this, homeFrame));
         
         pausePanel = new JPanel();
         pausePanel.setLayout(new GridLayout(3,1));
         pausePanel.add(resume);
         pausePanel.add(restart);
-        pausePanel.add(HomeScreen);
+        pausePanel.add(homeScreen);
         add(pausePanel);
     }
     
@@ -81,8 +92,7 @@ public class GameFieldViewer  extends JFrame{
         public void keyPressed(KeyEvent e) {
             
         }
-    
-
+        
         @Override
         public void keyReleased(KeyEvent e) {
             //determine field coordinates of player
@@ -90,14 +100,14 @@ public class GameFieldViewer  extends JFrame{
             int j = level.getPlayer().getX()/fieldSize;
             
             //pause/unpause the game
-            if(e.getKeyCode() == KeyEvent.VK_PAUSE){
+            if(e.getKeyCode() == KeyEvent.VK_PAUSE ||e.getKeyCode() == KeyEvent.VK_P){
                 paused = !paused;
                 component.setVisible(!paused);
                 pausePanel.setVisible(paused);
                 System.out.println("pause key pressed " + paused);
             }
             
-            if(paused != true){//disable walking if game is paused
+            if(!pausePanel.isVisible()){//disable walking if game is paused
                 //walk up
                 if(e.getKeyCode() == KeyEvent.VK_UP){
                     if(level.getPlayer().getY() > 0 ){
@@ -148,9 +158,6 @@ public class GameFieldViewer  extends JFrame{
             checkIfWalkWayHasKey(i, j);
             checkIfEndFieldFound(i, j);
             
-            System.out.println("X: " + level.getPlayer().getX() + "\n"
-                             + "Y: " + level.getPlayer().getY());
-            
             component.repaint();
         }
         //checks if the field the player is standing on has a key
@@ -181,6 +188,60 @@ public class GameFieldViewer  extends JFrame{
                 homeScreen.setVisible(true);
                 frame.dispose();
             }
+        }
+    }
+    
+    
+    class ResumeListener implements ActionListener{
+        private boolean paused;
+        
+        public ResumeListener() {
+            paused = true;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent event){
+            paused = !paused;
+            component.setVisible(!paused);
+            pausePanel.setVisible(paused);
+            System.out.println("pause key pressed " + paused);
+        }
+    }
+    
+    
+    class RestartListener implements ActionListener{
+        private JFrame frame;
+        private JFrame homeScreen;
+        private Level currentLevel;
+        
+        public RestartListener(JFrame frame, Level currentLevel, JFrame homeScreen) {
+            this.currentLevel = currentLevel;
+            this.homeScreen = homeScreen;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent event){
+            JFrame restartFrame = new GameFieldViewer(currentLevel,homeScreen);
+            restartFrame.setVisible(true);
+            restartFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(false);
+        }
+    }
+    
+    
+    class HomeScreenListener implements ActionListener{
+        private JFrame frame;
+        private JFrame homeScreen;
+        
+        public HomeScreenListener(JFrame frame, JFrame homeScreen) {
+            this.frame = frame;
+            this.homeScreen = homeScreen;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent event){
+            homeScreen.setVisible(true);
+            frame.dispose();
         }
     }
 }
