@@ -1,6 +1,5 @@
 package sleutelbarricade;
 
-import java.awt.AWTException;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,8 +7,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Robot;
-import java.util.logging.Logger;
 
 public class GameFieldViewer  extends JFrame{
     private GameField component;
@@ -24,7 +21,7 @@ public class GameFieldViewer  extends JFrame{
     private Level levelCopy;
     private Field[][] fields;
     
-    public GameFieldViewer(Level level, JFrame homeScreen) {
+    public GameFieldViewer(Level level, HomeScreen homeScreen) {
         createPausePanel(homeScreen);
         
         this.setLayout(new BorderLayout());
@@ -53,7 +50,7 @@ public class GameFieldViewer  extends JFrame{
         pausePanel.setVisible(false);
     }
     
-    public void createPausePanel(JFrame homeFrame){
+    public void createPausePanel(HomeScreen homeFrame){
         JButton resume = new JButton("Resume");
         resume.addActionListener(new ResumeListener());
         
@@ -74,10 +71,10 @@ public class GameFieldViewer  extends JFrame{
     
     class KeyListener1 implements KeyListener {   
         private JFrame frame;
-        private JFrame homeScreen;
+        private HomeScreen homeScreen;
         private boolean paused;
         
-        public KeyListener1(JFrame frame, JFrame homeScreen) {
+        public KeyListener1(JFrame frame, HomeScreen homeScreen) {
             this.frame = frame;
             this.homeScreen = homeScreen;
             this.paused = false;
@@ -188,6 +185,7 @@ public class GameFieldViewer  extends JFrame{
                 level.setGehaald(true);
                 
                 homeScreen.setVisible(true);
+                homeScreen.checklevels();
                 
                 frame.dispose();
             }
@@ -214,10 +212,10 @@ public class GameFieldViewer  extends JFrame{
     
     class RestartListener implements ActionListener{
         private JFrame frame;
-        private JFrame homeScreen;
+        private HomeScreen homeScreen;
         private Level currentLevel;
         
-        public RestartListener(JFrame frame, Level currentLevel, JFrame homeScreen) {
+        public RestartListener(JFrame frame, Level currentLevel, HomeScreen homeScreen) {
             this.currentLevel = currentLevel;
             this.homeScreen = homeScreen;
         }

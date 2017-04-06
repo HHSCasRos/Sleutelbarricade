@@ -43,7 +43,7 @@ public class HomeScreen extends JFrame{
         createPanel();
     }
 
-    private void checklevels() {
+    public void checklevels() {
         for(int i = 0; i < this.levels.size(); i++){
             if(levels.get(i).isGehaald()){
                 this.label.setText("Je hebt alle levels tot en met lv " + levels.get(i).getIdLevel() + " Gehaald!");
@@ -51,12 +51,13 @@ public class HomeScreen extends JFrame{
                 this.label.setText("Je hebt nog geen levels gehaald");
             }
         }
+        
     }
     
     class LevelSelectListener implements ActionListener{
         private final String idLevel;
-        private final JFrame frame;
-        public LevelSelectListener(String idLevel , JFrame f) {
+        private final HomeScreen frame;
+        public LevelSelectListener(String idLevel , HomeScreen f) {
             this.idLevel = idLevel;
             this.frame = f;
         }
