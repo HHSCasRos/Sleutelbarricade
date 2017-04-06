@@ -28,7 +28,9 @@ public class HomeScreen extends JFrame{
         
         for(int i = 0; i < this.amountOfLevels; i++){
             button.add(new JButton(levels.get(i).getIdLevel()));
-
+            String j = "" + i;
+            button.get(i).setActionCommand(j);
+            
             listener.add(new LevelSelectListener(levels.get(i).getIdLevel(),this));
             button.get(i).addActionListener(listener.get(i));
         }
@@ -46,7 +48,12 @@ public class HomeScreen extends JFrame{
        
         @Override
         public void actionPerformed(ActionEvent event){
-            JFrame level = new GameFieldViewer(levels.get(0), frame);
+            int buttonClicked;
+            JFrame level;
+            
+            buttonClicked = Integer.parseInt(event.getActionCommand());
+            
+            level = new GameFieldViewer(levels.get(buttonClicked), frame);
             level.setVisible(true);
             level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(false);
