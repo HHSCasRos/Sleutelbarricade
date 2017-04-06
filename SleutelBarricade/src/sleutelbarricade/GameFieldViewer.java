@@ -45,20 +45,21 @@ public class GameFieldViewer  extends JFrame{
         
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
-        this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 39);
+        this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 239);
         
         tekstArea = new JTextArea(8,50);
         tekstArea.setEditable(false);
         scrollPane = new JScrollPane(tekstArea);
-        //MessageConsole mc = new MessageConsole(tekstArea);
+        
+        createMessageBoard(homeScreen);
 
-        add(pausePanel, BorderLayout.NORTH);        
+        add(pausePanel, BorderLayout.NORTH);
         add(component, BorderLayout.CENTER);
         add(messagePanel, BorderLayout.SOUTH);
         
         component.setVisible(true);
         pausePanel.setVisible(false);
-        messagePanel.setVisible(false);
+        messagePanel.setVisible(true);
     }
     
     public void createPausePanel(HomeScreen homeFrame){
@@ -189,7 +190,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof Barricade){
                 Barricade currentField = (Barricade) fields[i][j];
                 if(!currentField.open()) {
-                    currentField.keyFits(level.getPlayer().getKey());
+                    tekstArea.insert(currentField.keyFits(level.getPlayer().getKey()), 0);
                 }
             }
         }

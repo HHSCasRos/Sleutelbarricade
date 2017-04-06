@@ -22,24 +22,22 @@ public class Barricade extends Field{
     }
     
     //message given if an incorrect key is used
-    public void message(){
-        System.out.println("Sorry, this key doesn't fit.");
+    public String message(){
+        return "Sorry, this key doesn't fit.";
     }
     
     //check if the key the player is holding has the same pincode
-    public boolean keyFits(Key k){
+    public String keyFits(Key k){
         if(k.getIdCode() == idCode) {
             isOpen = true;
             
             //make the barricade a fake walkway
-            System.out.println("barricade opened");
             super.setMoveThru(true);
             super.setColor(Color.GRAY);
-            
-            return true;
+                    
+            return "barricade opened";
         }else{
-            message();
-            return false;
+            return message();
         }
     }
     
