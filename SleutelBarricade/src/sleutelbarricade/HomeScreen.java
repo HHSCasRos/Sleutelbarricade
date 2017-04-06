@@ -50,7 +50,8 @@ public class HomeScreen extends JFrame{
                 this.label.setText("Je hebt alle levels tot en met lv " + levels.get(i).getIdLevel() + " Gehaald!");
                 j = true;
             } else if(j == false){
-                this.label.setText("Je hebt nog geen levels gehaald");
+                this.label.setText("Je hebt de tutorial nog niet gehaald");
+                break;
             }
         }
         repaint();

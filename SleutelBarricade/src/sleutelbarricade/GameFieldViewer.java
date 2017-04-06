@@ -59,7 +59,7 @@ public class GameFieldViewer  extends JFrame{
         
         component.setVisible(true);
         pausePanel.setVisible(false);
-        messagePanel.setVisible(true);
+        messagePanel.setVisible(false);
     }
     
     public void createPausePanel(HomeScreen homeFrame){
@@ -264,5 +264,4 @@ public class GameFieldViewer  extends JFrame{
             frame.dispose();
         }
     }
-    
 }

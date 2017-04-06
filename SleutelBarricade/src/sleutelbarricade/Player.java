@@ -32,7 +32,7 @@ public class Player {
         }
         walkway.setKey(null);
         
-        return "picked up the "+ walkway.getKey().getIdCode() +" key";
+        return "picked up the " + this.key.getIdCode() + " key";
     }
 
     //setters and getters
