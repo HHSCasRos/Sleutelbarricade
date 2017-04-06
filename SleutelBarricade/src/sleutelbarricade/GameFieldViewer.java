@@ -74,7 +74,7 @@ public class GameFieldViewer  extends JFrame{
     }
     
     public void createMessageBoard(){
-        label = new JLabel();
+        label = new JLabel("\"p\": toggle het pauseMenu.");
         messagePanel = new JPanel();
         messagePanel.add(label);
     }
@@ -102,7 +102,7 @@ public class GameFieldViewer  extends JFrame{
         
         @Override
         public void keyReleased(KeyEvent e) {
-            label.setText("");
+            label.setText("\"p\": toggel het pauseMenu.");
             //determine field coordinates of player
             int i = level.getPlayer().getY()/fieldSize;
             int j = level.getPlayer().getX()/fieldSize;
@@ -114,7 +114,7 @@ public class GameFieldViewer  extends JFrame{
                 pausePanel.setVisible(paused);
                 System.out.println();
                 
-                label.setText("pause key pressed " + paused);//notify player
+                label.setText("pause key pressed " + paused + '.');//notify player
             }
             
             if(component.isVisible()){//disable walking if game is paused
@@ -175,7 +175,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof WalkWay){//make sure it's possible for the current field to have a key
                 WalkWay currentField = (WalkWay) fields[i][j];
                 if(currentField.isHasKey()){
-                    label.setText(level.getPlayer().pickUpKey(currentField));
+                    label.setText(level.getPlayer().pickUpKey(currentField)+".");
                 }
             }
         }
@@ -184,7 +184,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof Barricade){
                 Barricade currentField = (Barricade) fields[i][j];
                 if(!currentField.open()) {
-                    label.setText(currentField.keyFits(level.getPlayer().getKey()));
+                    label.setText(currentField.keyFits(level.getPlayer().getKey())+".");
                 }
             }
         }
@@ -217,7 +217,7 @@ public class GameFieldViewer  extends JFrame{
             component.setVisible(!paused);
             pausePanel.setVisible(paused);
             
-            label.setText("pause key pressed " + paused );//notify player
+            label.setText("pause key pressed " + paused + ".");//notify player
         }
     }
     
