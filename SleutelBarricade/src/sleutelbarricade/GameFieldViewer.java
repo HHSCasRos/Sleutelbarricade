@@ -63,7 +63,7 @@ public class GameFieldViewer  extends JFrame{
             
             boolean paused = false;
             
-            //pause the game
+            //pause/unpause the game
             if(e.getKeyCode() == KeyEvent.VK_PAUSE){
                 if(paused == true){
                     paused = false;
@@ -73,7 +73,7 @@ public class GameFieldViewer  extends JFrame{
                 System.out.println("pause key pressed " + paused);
             }
             
-            if(paused == true){
+            if(paused == true){//disable walking if game is paused
                 //walk up
                 if(e.getKeyCode() == KeyEvent.VK_UP){
                     if(level.getPlayer().getY() > 0 ){
