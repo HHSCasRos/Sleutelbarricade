@@ -3,7 +3,7 @@ package sleutelbarricade;
 import java.awt.Color;
 
 public abstract class Field {
-    private static final int size = 40;
+    private static final int size = 60;
     private int x;
     private int y;
     private boolean moveThru;
