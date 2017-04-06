@@ -3,10 +3,7 @@ package sleutelbarricade;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class HomeScreen extends JFrame{
     private static final int FRAME_WIDTH = 400;

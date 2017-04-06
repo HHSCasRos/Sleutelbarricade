@@ -21,12 +21,11 @@ public class GameFieldViewer  extends JFrame{
     private Level level;
     private Level levelCopy;
     private Field[][] fields;
-    
-    private JTextArea tekstArea;
-    private JScrollPane scrollPane;
+    private JLabel label;
     
     public GameFieldViewer(Level level, HomeScreen homeScreen) {
         createPausePanel(homeScreen);
+        createMessageBoard(homeScreen);
         
         this.setLayout(new BorderLayout());
         this.level = level;
@@ -45,44 +44,39 @@ public class GameFieldViewer  extends JFrame{
         
         this.FRAME_WIDTH = fieldSize * gameFieldSize;
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
-        this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 239);
-        
-        tekstArea = new JTextArea(8,50);
-        tekstArea.setEditable(false);
-        scrollPane = new JScrollPane(tekstArea);
-        
-        createMessageBoard(homeScreen);
+        this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 89);
 
         add(pausePanel, BorderLayout.NORTH);
         add(messagePanel, BorderLayout.SOUTH);
         add(component, BorderLayout.CENTER);
         
         pausePanel.setVisible(false);
-        messagePanel.setVisible(false);
+        //messagePanel.setVisible(false);
         component.setVisible(true);
     }
     
     public void createPausePanel(HomeScreen homeFrame){
-        JButton resume = new JButton("Resume");
-        resume.addActionListener(new ResumeListener());
-        
-        JButton restart = new JButton("Restart");
-        restart.addActionListener(new RestartListener(this, level, homeFrame));
+//        JButton resume = new JButton("Resume");
+//        resume.addActionListener(new ResumeListener());
+//        
+//        JButton restart = new JButton("Restart");
+//        restart.addActionListener(new RestartListener(this, level, homeFrame));
         
         JButton homeScreen = new JButton("HomeScreen");
         homeScreen.addActionListener(new HomeScreenListener(this, homeFrame));
         
         pausePanel = new JPanel();
         pausePanel.setLayout(new GridLayout(3,1));
-        pausePanel.add(resume);
-        pausePanel.add(restart);
+//        pausePanel.add(resume);
+//        pausePanel.add(restart);
         pausePanel.add(homeScreen);
         add(pausePanel);
     }
+    
     public void createMessageBoard(HomeScreen homeFrame){
+        label = new JLabel();
         messagePanel = new JPanel();
-        messagePanel.add(scrollPane);
-        add(messagePanel);
+        messagePanel.add(label);
     }
     
     class KeyListener1 implements KeyListener {   
@@ -108,6 +102,7 @@ public class GameFieldViewer  extends JFrame{
         
         @Override
         public void keyReleased(KeyEvent e) {
+            label.setText("");
             //determine field coordinates of player
             int i = level.getPlayer().getY()/fieldSize;
             int j = level.getPlayer().getX()/fieldSize;
@@ -119,7 +114,7 @@ public class GameFieldViewer  extends JFrame{
                 pausePanel.setVisible(paused);
                 System.out.println();
                 
-                tekstArea.insert("pause key pressed " + paused + "/n", 0);//notify player
+                label.setText("pause key pressed " + paused);//notify player
             }
             
             if(component.isVisible()){//disable walking if game is paused
@@ -169,7 +164,6 @@ public class GameFieldViewer  extends JFrame{
                 }
             }
             
-            
             checkIfWalkWayHasKey(i, j);
             checkIfEndFieldFound(i, j);
             
@@ -181,7 +175,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof WalkWay){//make sure it's possible for the current field to have a key
                 WalkWay currentField = (WalkWay) fields[i][j];
                 if(currentField.isHasKey()){
-                    tekstArea.insert(level.getPlayer().pickUpKey(currentField), 0);
+                    label.setText(level.getPlayer().pickUpKey(currentField));
                 }
             }
         }
@@ -190,7 +184,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof Barricade){
                 Barricade currentField = (Barricade) fields[i][j];
                 if(!currentField.open()) {
-                    tekstArea.insert(currentField.keyFits(level.getPlayer().getKey()), 0);
+                    label.setText(currentField.keyFits(level.getPlayer().getKey()));
                 }
             }
         }
@@ -224,7 +218,7 @@ public class GameFieldViewer  extends JFrame{
             component.setVisible(!paused);
             pausePanel.setVisible(paused);
             
-            tekstArea.insert("pause key pressed " + paused + "/n", 0);//notify player
+            label.setText("pause key pressed " + paused );//notify player
         }
     }
     
