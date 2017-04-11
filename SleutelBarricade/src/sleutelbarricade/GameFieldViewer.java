@@ -82,6 +82,11 @@ public class GameFieldViewer  extends JFrame{
         messagePanel.add(label);
     }
     
+    //used for testing
+    public Level getLevelCopy(){
+        return this.levelCopy;
+    }
+    
     class KeyListener1 implements KeyListener {   
         private JFrame frame;
         private HomeScreen homeScreen;
