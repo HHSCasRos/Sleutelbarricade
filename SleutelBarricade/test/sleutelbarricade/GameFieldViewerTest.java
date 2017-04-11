@@ -3,7 +3,6 @@ package sleutelbarricade;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -34,15 +33,16 @@ public class GameFieldViewerTest {
 
     /**
      * Test of createPausePanel method, of class GameFieldViewer.
+     * @throws java.awt.AWTException
      */
     @Test
     public void testMoveOutOfBounds() throws AWTException{
         //set up field
         Level test = new Level("Tutorial", 0);
         Field[][] testField = new Field[test.getGameFieldSize()][test.getGameFieldSize()];
-        for(int i = 0; i < testField.length; i++){
-            for(int j = 0; j < testField.length; j++){
-                testField[i][j] = new WalkWay();
+        for (Field[] testField1 : testField) {
+            for (int j = 0; j < testField.length; j++) {
+                testField1[j] = new WalkWay();
             }
         }
         for(int i=0; i < testField.length; i++){
@@ -69,8 +69,9 @@ public class GameFieldViewerTest {
         GameFieldViewer level;
         level = new GameFieldViewer(test, frame);
         
-        
+        //thing that simulates key presses
         Robot robot = new Robot();
+        level.requestFocusInWindow();
         
         //get player position by getting the player coordinates and dividing them by the size of the fields
         int Y;
@@ -85,6 +86,16 @@ public class GameFieldViewerTest {
         Y = level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize();
         
         assertEquals(0, Y);
+        
+        //test walking out of the left side
+        for(int i = 0;i < test.getGameFieldSize(); i++){
+            robot.keyPress(KeyEvent.VK_LEFT);
+            robot.keyRelease(KeyEvent.VK_LEFT);
+        }
+        
+        X = level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize();
+        
+        assertEquals(0, X);
         
         //test walking out of the bottom
         for(int i = 0;i < test.getGameFieldSize(); i++){
@@ -105,15 +116,5 @@ public class GameFieldViewerTest {
         X = level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize();
         
         assertEquals(level.getLevelCopy().getGameFieldSize(), X);
-        
-        //test walking out of the left side
-        for(int i = 0;i < test.getGameFieldSize(); i++){
-            robot.keyPress(KeyEvent.VK_LEFT);
-            robot.keyRelease(KeyEvent.VK_LEFT);
-        }
-        
-        X = level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize();
-        
-        assertEquals(0, X);
     }
 }
