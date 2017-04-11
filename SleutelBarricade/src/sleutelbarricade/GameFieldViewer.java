@@ -24,9 +24,6 @@ public class GameFieldViewer  extends JFrame{
     private JLabel label;
     
     public GameFieldViewer(Level level, HomeScreen homeScreen) {
-        createPausePanel(homeScreen);
-        createMessageBoard();
-        
         this.setLayout(new BorderLayout());
         this.level = level;
         this.levelCopy = new Level(level.getIdLevel(),level.getNiveau());
@@ -34,10 +31,6 @@ public class GameFieldViewer  extends JFrame{
         
         this.fields = this.levelCopy.getGameField();
         this.component = new GameField(this.levelCopy);
-        
-        KeyListener listener = new KeyListener1(this, homeScreen);
-        this.addKeyListener(listener);
-        pausePanel.addKeyListener(listener);
         
         //define and set framesize based on the required size of GameField
         this.fieldSize = component.getFieldSize();
@@ -47,6 +40,13 @@ public class GameFieldViewer  extends JFrame{
         this.FRAME_HEIGHT = fieldSize * gameFieldSize;
         this.setSize(FRAME_WIDTH + 16, FRAME_HEIGHT + 89);
 
+        createPausePanel(homeScreen);
+        KeyListener listener = new KeyListener1(this, homeScreen);
+        this.addKeyListener(listener);
+        pausePanel.addKeyListener(listener);
+        
+        createMessageBoard();
+        
         add(pausePanel, BorderLayout.NORTH);
         add(messagePanel, BorderLayout.SOUTH);
         add(component, BorderLayout.CENTER);
@@ -54,14 +54,16 @@ public class GameFieldViewer  extends JFrame{
         pausePanel.setVisible(false);
         //messagePanel.setVisible(false);
         component.setVisible(true);
+        
+        
     }
     
     public void createPausePanel(HomeScreen homeFrame){
 //        JButton resume = new JButton("Resume");
 //        resume.addActionListener(new ResumeListener());
 //        
-//        JButton restart = new JButton("Restart");
-//        restart.addActionListener(new RestartListener(this, level, homeFrame));
+        JButton restart = new JButton("Restart");
+        restart.addActionListener(new RestartListener(this.level, homeFrame));
         
         JButton homeScreen = new JButton("HomeScreen");
         homeScreen.addActionListener(new HomeScreenListener(this, homeFrame));
@@ -69,7 +71,7 @@ public class GameFieldViewer  extends JFrame{
         pausePanel = new JPanel();
         pausePanel.setLayout(new GridLayout(3,1));
 //        pausePanel.add(resume);
-//        pausePanel.add(restart);
+        pausePanel.add(restart);
         pausePanel.add(homeScreen);
         add(pausePanel);
     }
@@ -228,7 +230,7 @@ public class GameFieldViewer  extends JFrame{
         private HomeScreen homeScreen;
         private Level currentLevel;
         
-        public RestartListener(JFrame frame, Level currentLevel, HomeScreen homeScreen) {
+        public RestartListener(Level currentLevel, HomeScreen homeScreen) {
             this.currentLevel = currentLevel;
             this.homeScreen = homeScreen;
         }
@@ -238,7 +240,7 @@ public class GameFieldViewer  extends JFrame{
             JFrame restartFrame = new GameFieldViewer(currentLevel,homeScreen);
             restartFrame.setVisible(true);
             restartFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(false);
+            //frame.setVisible(false);
         }
     }
     
