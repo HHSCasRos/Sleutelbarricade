@@ -29,7 +29,8 @@ public class GameFieldViewer  extends JFrame{
         
         this.setLayout(new BorderLayout());
         this.level = level;
-        this.levelCopy = /*new Level*/this.level;
+        this.levelCopy = new Level(level.getIdLevel(),level.getNiveau());
+        this.levelCopy.setGameField(level.getGameField());
         
         this.fields = this.levelCopy.getGameField();
         this.component = new GameField(this.levelCopy);
@@ -104,8 +105,8 @@ public class GameFieldViewer  extends JFrame{
         public void keyReleased(KeyEvent e) {
             label.setText("\"p\": toggle het pauseMenu.");
             //determine field coordinates of player
-            int i = level.getPlayer().getY()/fieldSize;
-            int j = level.getPlayer().getX()/fieldSize;
+            int i = levelCopy.getPlayer().getY()/fieldSize;
+            int j = levelCopy.getPlayer().getX()/fieldSize;
             
             //pause/unpause the game
             if(e.getKeyCode() == KeyEvent.VK_PAUSE ||e.getKeyCode() == KeyEvent.VK_P){
@@ -120,9 +121,9 @@ public class GameFieldViewer  extends JFrame{
             if(component.isVisible()){//disable walking if game is paused
                 //walk up
                 if(e.getKeyCode() == KeyEvent.VK_UP){
-                    if(level.getPlayer().getY() > 0 ){
+                    if(levelCopy.getPlayer().getY() > 0 ){
                         if(fields[i-1][j].canMoveThru()) {
-                            level.getPlayer().move(0, -fieldSize);
+                            levelCopy.getPlayer().move(0, -fieldSize);
                             i--;
                         }else{
                            checkIfBaricadeCanOpen(i-1,j); 
@@ -131,9 +132,9 @@ public class GameFieldViewer  extends JFrame{
                 }
                 //walk left
                 if(e.getKeyCode() == KeyEvent.VK_LEFT){
-                    if(level.getPlayer().getX() > 0 ){
+                    if(levelCopy.getPlayer().getX() > 0 ){
                         if(fields[i][j-1].canMoveThru()) {
-                            level.getPlayer().move(-fieldSize, 0);
+                            levelCopy.getPlayer().move(-fieldSize, 0);
                             j--;
                         }else{
                            checkIfBaricadeCanOpen(i,j-1); 
@@ -142,9 +143,9 @@ public class GameFieldViewer  extends JFrame{
                 }
                 //walk down
                 if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                    if(level.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
+                    if(levelCopy.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
                         if(fields[i+1][j].canMoveThru()) {
-                            level.getPlayer().move(0, +fieldSize);
+                            levelCopy.getPlayer().move(0, +fieldSize);
                             i++;
                         }else{
                            checkIfBaricadeCanOpen(i+1,j); 
@@ -153,9 +154,9 @@ public class GameFieldViewer  extends JFrame{
                 }
                 //walk right
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    if(level.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
+                    if(levelCopy.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
                         if(fields[i][j+1].canMoveThru()) {
-                            level.getPlayer().move(+fieldSize, 0);
+                            levelCopy.getPlayer().move(+fieldSize, 0);
                             j++;
                         }else{
                            checkIfBaricadeCanOpen(i,j+1); 
@@ -175,7 +176,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof WalkWay){//make sure it's possible for the current field to have a key
                 WalkWay currentField = (WalkWay) fields[i][j];
                 if(currentField.isHasKey()){
-                    label.setText(level.getPlayer().pickUpKey(currentField)+".");
+                    label.setText(levelCopy.getPlayer().pickUpKey(currentField)+".");
                 }
             }
         }
@@ -184,7 +185,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof Barricade){
                 Barricade currentField = (Barricade) fields[i][j];
                 if(!currentField.open()) {
-                    label.setText(currentField.keyFits(level.getPlayer().getKey())+".");
+                    label.setText(currentField.keyFits(levelCopy.getPlayer().getKey())+".");
                 }
             }
         }
@@ -193,7 +194,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof EndField){
                 EndField currentField = (EndField) fields[i][j];
                 
-                level.setGehaald(true);
+                levelCopy.setGehaald(true);
                 
                 homeScreen.setVisible(true);
                 homeScreen.checklevels();

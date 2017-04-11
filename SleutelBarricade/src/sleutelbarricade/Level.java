@@ -37,7 +37,36 @@ public class Level {
     }
     
     public void setGameField(Field[][] fields) {
-        this.fields = fields;
+        this.fields = new Field[gameFieldSize][gameFieldSize];
+        
+        for(int i = 0; i < gameFieldSize; i++){
+            for(int j = 0; j < gameFieldSize; j++){
+                if(fields[i][j] instanceof WalkWay){
+                    WalkWay currentField = (WalkWay)fields[i][j];
+                    if(currentField.isHasKey()){
+                        this.fields[i][j] = new WalkWay(currentField.getKey());
+                    }else
+                        this.fields[i][j] = new WalkWay();
+                }else if(fields[i][j] instanceof EndField){
+                    this.fields[i][j] = fields[i][j];
+                }else if(fields[i][j] instanceof Barricade){
+                    Barricade currentField = (Barricade)fields[i][j];
+                    this.fields[i][j] = new Barricade(currentField.getIdCode());
+                }else{
+                    this.fields[i][j] = new Wall();
+                }
+            } 
+        }
+        
+        for(int i=0; i < gameFieldSize; i++){
+            int j = 0;
+            this.fields[i][j].setX(0);
+            this.fields[i][j].setY(i * this.fields[i][j].getSize());
+            for(j=0; j<gameFieldSize; j++){
+                this.fields[i][j].setX(j * this.fields[i][j].getSize());
+                this.fields[i][j].setY(i * this.fields[i][j].getSize());
+            }
+        }
     }
     
     public Field[][] getGameField(){
@@ -69,5 +98,9 @@ public class Level {
     }
     public void setGehaald(boolean gehaald) {
         this.gehaald = gehaald;
+    }
+    
+    public int getNiveau(){
+        return niveau;
     }
 }
