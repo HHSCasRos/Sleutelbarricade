@@ -201,7 +201,7 @@ public class GameFieldViewer  extends JFrame{
             if(fields[i][j] instanceof EndField){
                 EndField currentField = (EndField) fields[i][j];
                 
-                levelCopy.setGehaald(true);
+                level.setGehaald(true);
                 
                 homeScreen.setVisible(true);
                 homeScreen.checklevels();
