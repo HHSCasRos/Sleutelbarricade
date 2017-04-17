@@ -70,48 +70,79 @@ public class GameFieldViewerTest {
         level = new GameFieldViewer(test, frame);
         
         //thing that simulates key presses
-        Robot robot = new Robot();
-        level.requestFocusInWindow();
+        KeyEvent direction;
         
         //get player position by getting the player coordinates and dividing them by the size of the fields
         int Y;
         int X;
             
         //test walking out of the top
+        direction = new KeyEvent(level, 0, 0, 0, 38);
+        
         for(int i = 0;i < test.getGameFieldSize(); i++){
-            robot.keyPress(KeyEvent.VK_UP);
-            robot.keyRelease(KeyEvent.VK_UP);
+            level.getLevelCopy().getPlayer().move(
+                    direction,
+                    level.getLevelCopy().getGameField(),
+                    level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameFieldSize());
         }
+        
         
         Y = level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize();
         
         assertEquals(0, Y);
         
         //test walking out of the left side
+        direction = new KeyEvent(level, 0, 0, 0, 37);
+        
         for(int i = 0;i < test.getGameFieldSize(); i++){
-            robot.keyPress(KeyEvent.VK_LEFT);
-            robot.keyRelease(KeyEvent.VK_LEFT);
+            level.getLevelCopy().getPlayer().move(
+                    direction,
+                    level.getLevelCopy().getGameField(),
+                    level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameFieldSize());
         }
+        
         
         X = level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize();
         
         assertEquals(0, X);
         
         //test walking out of the bottom
+        direction = new KeyEvent(level, 0, 0, 0, 40);
+        
         for(int i = 0;i < test.getGameFieldSize(); i++){
-            robot.keyPress(KeyEvent.VK_DOWN);
-            robot.keyRelease(KeyEvent.VK_DOWN);
+            level.getLevelCopy().getPlayer().move(
+                    direction,
+                    level.getLevelCopy().getGameField(),
+                    level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameFieldSize());
         }
+        
         
         Y = level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize();
         
         assertEquals(level.getLevelCopy().getGameFieldSize() - 1, Y);
         
         //test walking out of the right side
+        direction = new KeyEvent(level, 0, 0, 0, 39);
+        
         for(int i = 0;i < test.getGameFieldSize(); i++){
-            robot.keyPress(KeyEvent.VK_RIGHT);
-            robot.keyRelease(KeyEvent.VK_RIGHT);
+            level.getLevelCopy().getPlayer().move(
+                    direction,
+                    level.getLevelCopy().getGameField(),
+                    level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameField()[0][0].getSize(),
+                    level.getLevelCopy().getGameFieldSize());
         }
+        
         
         X = level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize();
         
