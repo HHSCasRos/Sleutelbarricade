@@ -1,6 +1,7 @@
 package sleutelbarricade;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 public class Player {
     private String name;
@@ -17,9 +18,61 @@ public class Player {
         this.color = Color.BLUE;
     }
     
-    public void move(int x, int y){
-        this.x += x;
-        this.y += y;
+    public boolean move(KeyEvent e, Field[][] fields, int i, int j, int fieldSize, int gameFieldSize){
+        boolean encounteredObstacle = false;
+        
+        //walk up
+        if(e.getKeyCode() == KeyEvent.VK_UP){
+            if(this.y > 0 ){
+                if(fields[i-1][j].canMoveThru()) {
+                    this.y -= fieldSize;
+                    i--;
+                    encounteredObstacle = false;
+                }else{
+                    encounteredObstacle = true;
+                }
+            }
+        }
+        
+        //walk left
+        if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            if(this.x > 0 ){
+                if(fields[i][j-1].canMoveThru()) {
+                    this.x -= fieldSize;
+                    j--;
+                    encounteredObstacle = false;
+                }else{
+                    encounteredObstacle = true;
+                }
+            }
+        }
+        
+        //walk down
+        if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            if(this.y < (fieldSize * (gameFieldSize-1)) ){
+                if(fields[i+1][j].canMoveThru()) {
+                    this.y += fieldSize;
+                    i++;
+                    encounteredObstacle = false;
+                }else{
+                    encounteredObstacle = true;
+                }
+            }
+        }
+        
+        //walk right
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            if(this.x < (fieldSize * (gameFieldSize-1)) ){
+                if(fields[i][j+1].canMoveThru()) {
+                    this.x += fieldSize;
+                    j++;
+                    encounteredObstacle = false;
+                }else{
+                    encounteredObstacle = true;
+                }
+            }
+        }
+        return encounteredObstacle;
     }
     
     public String pickUpKey(WalkWay walkway){

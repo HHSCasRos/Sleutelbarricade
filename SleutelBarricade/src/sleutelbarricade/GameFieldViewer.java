@@ -114,6 +114,7 @@ public class GameFieldViewer  extends JFrame{
             //determine field coordinates of player
             int i = levelCopy.getPlayer().getY()/fieldSize;
             int j = levelCopy.getPlayer().getX()/fieldSize;
+            boolean obstacle;
             
             //pause/unpause the game
             if(e.getKeyCode() == KeyEvent.VK_PAUSE ||e.getKeyCode() == KeyEvent.VK_P){
@@ -126,50 +127,73 @@ public class GameFieldViewer  extends JFrame{
             }
             
             if(component.isVisible()){//disable walking if game is paused
-                //walk up
-                if(e.getKeyCode() == KeyEvent.VK_UP){
-                    if(levelCopy.getPlayer().getY() > 0 ){
-                        if(fields[i-1][j].canMoveThru()) {
-                            levelCopy.getPlayer().move(0, -fieldSize);
-                            i--;
-                        }else{
-                           checkIfBaricadeCanOpen(i-1,j); 
-                        }
+                
+                //move the player
+                obstacle = levelCopy.getPlayer().move(e, fields, i, j, fieldSize, gameFieldSize);
+                
+                if(obstacle){//player encountered an obstacle while moving
+                    if(e.getKeyCode() == KeyEvent.VK_UP){
+                        checkIfBaricadeCanOpen(i-1,j);
                     }
-                }
-                //walk left
-                if(e.getKeyCode() == KeyEvent.VK_LEFT){
-                    if(levelCopy.getPlayer().getX() > 0 ){
-                        if(fields[i][j-1].canMoveThru()) {
-                            levelCopy.getPlayer().move(-fieldSize, 0);
-                            j--;
-                        }else{
-                           checkIfBaricadeCanOpen(i,j-1); 
-                        }
+                    if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                        checkIfBaricadeCanOpen(i,j-1);
                     }
-                }
-                //walk down
-                if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                    if(levelCopy.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
-                        if(fields[i+1][j].canMoveThru()) {
-                            levelCopy.getPlayer().move(0, +fieldSize);
-                            i++;
-                        }else{
-                           checkIfBaricadeCanOpen(i+1,j); 
-                        }
+                    if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                        checkIfBaricadeCanOpen(i+1,j);
                     }
-                }
-                //walk right
-                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    if(levelCopy.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
-                        if(fields[i][j+1].canMoveThru()) {
-                            levelCopy.getPlayer().move(+fieldSize, 0);
-                            j++;
-                        }else{
-                           checkIfBaricadeCanOpen(i,j+1); 
-                        }
+                    if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                        checkIfBaricadeCanOpen(i,j+1);
                     }
+                } else {
+                    //get new player position
+                    i = levelCopy.getPlayer().getY()/fieldSize;
+                    j = levelCopy.getPlayer().getX()/fieldSize;
                 }
+                
+//                //walk up
+//                if(e.getKeyCode() == KeyEvent.VK_UP){
+//                    if(levelCopy.getPlayer().getY() > 0 ){
+//                        if(fields[i-1][j].canMoveThru()) {
+//                            levelCopy.getPlayer().move(0, -fieldSize);
+//                            i--;
+//                        }else{
+//                           checkIfBaricadeCanOpen(i-1,j);
+//                        }
+//                    }
+//                }
+//                //walk left
+//                if(e.getKeyCode() == KeyEvent.VK_LEFT){
+//                    if(levelCopy.getPlayer().getX() > 0 ){
+//                        if(fields[i][j-1].canMoveThru()) {
+//                            levelCopy.getPlayer().move(-fieldSize, 0);
+//                            j--;
+//                        }else{
+//                           checkIfBaricadeCanOpen(i,j-1);
+//                        }
+//                    }
+//                }
+//                //walk down
+//                if(e.getKeyCode() == KeyEvent.VK_DOWN){
+//                    if(levelCopy.getPlayer().getY() < (fieldSize * (gameFieldSize-1)) ){
+//                        if(fields[i+1][j].canMoveThru()) {
+//                            levelCopy.getPlayer().move(0, +fieldSize);
+//                            i++;
+//                        }else{
+//                           checkIfBaricadeCanOpen(i+1,j);
+//                        }
+//                    }
+//                }
+//                //walk right
+//                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+//                    if(levelCopy.getPlayer().getX() < (fieldSize * (gameFieldSize-1)) ){
+//                        if(fields[i][j+1].canMoveThru()) {
+//                            levelCopy.getPlayer().move(+fieldSize, 0);
+//                            j++;
+//                        }else{
+//                           checkIfBaricadeCanOpen(i,j+1);
+//                        }
+//                    }
+//                }
             }
             
             checkIfWalkWayHasKey(i, j);
@@ -188,7 +212,7 @@ public class GameFieldViewer  extends JFrame{
             }
         }
         
-        private void checkIfBaricadeCanOpen(int i, int j) {
+        public void checkIfBaricadeCanOpen(int i, int j) {
             if(fields[i][j] instanceof Barricade){
                 Barricade currentField = (Barricade) fields[i][j];
                 if(!currentField.open()) {

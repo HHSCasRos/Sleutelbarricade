@@ -105,7 +105,7 @@ public class GameFieldViewerTest {
         
         Y = level.getLevelCopy().getPlayer().getY()/level.getLevelCopy().getGameField()[0][0].getSize();
         
-        assertEquals(level.getLevelCopy().getGameFieldSize(), Y);
+        assertEquals(level.getLevelCopy().getGameFieldSize() - 1, Y);
         
         //test walking out of the right side
         for(int i = 0;i < test.getGameFieldSize(); i++){
@@ -115,6 +115,6 @@ public class GameFieldViewerTest {
         
         X = level.getLevelCopy().getPlayer().getX()/level.getLevelCopy().getGameField()[0][0].getSize();
         
-        assertEquals(level.getLevelCopy().getGameFieldSize(), X);
+        assertEquals(level.getLevelCopy().getGameFieldSize() - 1, X);
     }
 }
